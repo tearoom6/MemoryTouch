@@ -1,0 +1,47 @@
+# MemoryTouchのテキストリソース情報
+# button
+button_ok=OK
+button_cancel=Cancel
+button_menu_start=スタート
+button_menu_continue=つづきから
+button_menu_easy=初級
+button_menu_hard=上級
+button_menu_extra=エクストラ
+button_menu_3x3=3 X 3
+button_menu_4x4=4 X 4
+button_menu_5x5=5 X 5
+# description - special
+description_after_clear=クリア!パネルタッチでPtゲット!
+description_failed=チャレンジ失敗!
+description_quit=ゲームを終了しますか?
+description_tutorial=チュートリアル {0}
+# description - clear requirements
+description_stage_standard=光った順にタッチしよう!
+description_stage_skip=光った順に{0}つ飛ばしでタッチしよう!
+description_stage_reverse=光った順の逆順でタッチしよう!
+description_stage_reverse_skip=逆順の{0}つ飛ばしでタッチしよう!
+# label
+label_menu_quest=クエストモード
+label_menu_challenge=チャレンジモード
+label_menu_practice=練習モード
+label_input_name=名前を入力してね
+label_best_record=BEST RECORD
+label_point=Point
+label_rank=Rank
+label_stage=Stage
+label_ranking=RANKING
+label_easy=初級
+label_hard=上級
+label_extra=エクストラ
+# message
+message_app_name=BREAKTHROUGH
+message_app_version=Version {0}
+message_credit1=(c)tearoom6 2015
+message_credit2=All Rights Reserved.
+message_author_url=http://tearoom6-jp.appspot.com
+message_game_start=GAME START
+# toast message
+toast_clear_bonus=クリアボーナス {0} Pt獲得!
+toast_time_bonus=タイムボーナス {0} Pt獲得!
+toast_touch_wrong_panel=タッチミス!
+toast_time_up=時間切れ!

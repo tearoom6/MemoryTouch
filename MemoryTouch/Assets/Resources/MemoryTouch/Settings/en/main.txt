@@ -1,0 +1,47 @@
+# MemoryTouch text resources
+# button
+button_ok=OK
+button_cancel=Cancel
+button_menu_start=START
+button_menu_continue=CONTINUE
+button_menu_easy=EASY
+button_menu_hard=HARD
+button_menu_extra=EXTRA
+button_menu_3x3=3 X 3
+button_menu_4x4=4 X 4
+button_menu_5x5=5 X 5
+# description - special
+description_after_clear=Cleared! Touch rest panels!
+description_failed=Your challange failed!
+description_quit=Do you quit game?
+# description - clear requirements
+description_stage_standard=Touch in order of lightning!
+description_stage_skip=Touch with {0}-skip!
+description_stage_reverse=Touch in reverse of lightning!
+description_stage_reverse_skip=Touch in reverse of lightning with {0}-skip!
+description_tutorial=Tutorial {0}
+# label
+label_menu_quest=Quest Mode
+label_menu_challenge=Challenge Mode
+label_menu_practice=Practice Mode
+label_input_name=Input your name.
+label_best_record=BEST RECORD
+label_point=Point
+label_rank=Rank
+label_stage=Stage
+label_ranking=RANKING
+label_easy=Easy
+label_hard=Hard
+label_extra=Extra
+# message
+message_app_name=BREAKTHROUGH
+message_app_version=Version {0}
+message_credit1=(c)tearoom6 2015
+message_credit2=All Rights Reserved.
+message_author_url=http://tearoom6-jp.appspot.com
+message_game_start=GAME START
+# toast message
+toast_clear_bonus=CLEAR BONUS {0} Pt!
+toast_time_bonus=TIME BONUS {0} Pt!
+toast_touch_wrong_panel=You touched wrong panel!
+toast_time_up=TIME UP!
