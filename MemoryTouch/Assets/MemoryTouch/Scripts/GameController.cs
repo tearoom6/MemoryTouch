@@ -764,10 +764,14 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_STAGE, stageManager.mode.GetModeId()), this.stageManager.mode.GetCurrentStageIndex(), userKey);
         bool newRecord = localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_POINT, stageManager.mode.GetModeId()), this.point, userKey);
         if (newRecord && stageManager.mode.GetType() != typeof(PracticeMode)) {
+            RankingRecord record = new RankingRecord(this.stageManager.mode.GetModeId(), localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, ""), 0, this.point);
+            record.reqCode = EncryptUtil.Hash(userKey) + RandomUtil.GenerateRandomStr(10);
+            string recordJson = EncryptUtil.ObjectToJson(record);
             Dictionary<string, string> header = new Dictionary<string, string>();
             header.Add("Content-Type", "application/json; charset=UTF-8");
-            RankingRecord record = new RankingRecord(this.stageManager.mode.GetModeId(), localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, ""), 0, this.point);
-            networkManager.POST(GameConstants.API_URL_POST_RANKING_RECORD, EncryptUtil.ObjectToJson(record), header, (System.Action<WWW>)((WWW www) =>
+            header.Add("Api-Token", EncryptUtil.Hash(record.reqCode));
+            header.Add("App-Version", GameConstants.VERSION);
+            networkManager.POST(GameConstants.API_URL_POST_RANKING_RECORD, recordJson, header, (System.Action<WWW>)((WWW www) =>
                 {
                 }));
         }
@@ -1238,6 +1242,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
 
         Dictionary<string, string> header = new Dictionary<string, string>();
         header.Add("Accept", "application/json");
+        header.Add("App-Version", GameConstants.VERSION);
         networkManager.GET(string.Format(GameConstants.API_URL_GET_RANKING_RECORDS, new ChallengeMode(1).GetModeId()).ToString(), header, (System.Action<WWW>)((WWW www) =>
             {
                 List<RankingRecord> records2 = EncryptUtil.JsonToObject<List<RankingRecord>>(www.text);

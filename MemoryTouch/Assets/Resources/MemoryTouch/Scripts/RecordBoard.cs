@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 /// <summary>
@@ -93,10 +94,12 @@ public class RecordBoard : MonoBehaviour
 [System.Serializable]
 public class RankingRecord
 {
+    public string reqCode;
     public string category;
     public string name;
     public int rank;
     public int point;
+    public DateTime createdAt;
 
     public RankingRecord()
     {

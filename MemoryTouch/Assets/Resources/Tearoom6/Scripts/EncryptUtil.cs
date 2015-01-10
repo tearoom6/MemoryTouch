@@ -7,6 +7,7 @@ using LitJson;
 /// <summary>
 /// 暗号化に関するUtilityクラス。
 /// http://dobon.net/vb/dotnet/string/encryptstring.html
+/// http://dobon.net/vb/dotnet/string/md5.html
 /// </summary>
 public class EncryptUtil
 {
@@ -68,7 +69,7 @@ public class EncryptUtil
     }
 
     /// <summary>
-    /// 暗号化された文字列を復号化する。
+    /// 暗号化された文字列を復号化します。
     /// </summary>
     /// <param name="sourceString">暗号化された文字列</param>
     /// <param name="password">暗号化に使用したパスワード</param>
@@ -100,6 +101,39 @@ public class EncryptUtil
 
         // バイト型配列を文字列に戻して返す
         return System.Text.Encoding.UTF8.GetString(decBytes);
+    }
+
+    /// <summary>
+    /// 文字列をMD5ハッシュ化します。
+    /// </summary>
+    /// <returns><c>true</c> if hash strData; otherwise, <c>false</c>.</returns>
+    /// <param name="strData">String data.</param>
+    public static string Hash(string strData)
+    {
+        // 文字列をbyte型配列に変換する
+        byte[] byteData = System.Text.Encoding.UTF8.GetBytes(strData);
+        // ハッシュ化
+        byte[] hashCode = Hash(byteData);
+        // byte型配列を16進数の文字列に変換して返す
+        return BitConverter.ToString(hashCode).ToLower().Replace("-","");
+    }
+
+    /// <summary>
+    /// バイト列をMD5ハッシュ化します。
+    /// </summary>
+    /// <returns><c>true</c> if hash byteData; otherwise, <c>false</c>.</returns>
+    /// <param name="byteData">Byte data.</param>
+    public static byte[] Hash(byte[] byteData)
+    {
+        // MD5CryptoServiceProviderオブジェクトを作成
+        System.Security.Cryptography.MD5CryptoServiceProvider md5 =
+            new System.Security.Cryptography.MD5CryptoServiceProvider();
+        // ハッシュ値を計算する
+        byte[] hashCode = md5.ComputeHash(byteData);
+        // 閉じる
+        md5.Clear();
+
+        return hashCode;
     }
 
     /// <summary>
