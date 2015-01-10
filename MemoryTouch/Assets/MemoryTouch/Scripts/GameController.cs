@@ -764,7 +764,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     {
         localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_STAGE, stageManager.mode.GetModeId()), this.stageManager.mode.GetCurrentStageIndex(), userKey);
         bool newRecord = localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_POINT, stageManager.mode.GetModeId()), this.point, userKey);
-        if (newRecord && stageManager.mode.GetType() != typeof(PracticeMode)) {
+        if (stageManager.mode.GetType() != typeof(PracticeMode)) {
+            // 新記録でなくてもサーバ送信
             RankingRecord record = new RankingRecord(this.stageManager.mode.GetModeId(), localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, RandomUtil.RandomName()), 0, this.point);
             record.reqCode = EncryptUtil.Hash(userKey) + RandomUtil.GenerateRandomStr(10);
             string recordJson = EncryptUtil.ObjectToJson(record);
