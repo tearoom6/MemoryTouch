@@ -147,6 +147,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         autoButton.SetActive(false);
 
         userKey = LoadUserKey();
+        localDataStore.Save(GameConstants.PREF_KEY_USER_NAME, RandomUtil.RandomName());
 
         touchHandler.AddPanelTouchDownListener(this);
         touchHandler.AddPanelTouchingListener(this);
@@ -408,7 +409,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                     DisplayRecordBoard();
                 } else if (raycastHit.collider.gameObject.name == "IconSetting") {
                     StateManager.EditSetting();
-                    nameFieldValue = localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, "");
+                    nameFieldValue = localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, RandomUtil.RandomName());
                     DisplaySettingBoard();
                 }
                 break;
@@ -764,7 +765,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_STAGE, stageManager.mode.GetModeId()), this.stageManager.mode.GetCurrentStageIndex(), userKey);
         bool newRecord = localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_POINT, stageManager.mode.GetModeId()), this.point, userKey);
         if (newRecord && stageManager.mode.GetType() != typeof(PracticeMode)) {
-            RankingRecord record = new RankingRecord(this.stageManager.mode.GetModeId(), localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, ""), 0, this.point);
+            RankingRecord record = new RankingRecord(this.stageManager.mode.GetModeId(), localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, RandomUtil.RandomName()), 0, this.point);
             record.reqCode = EncryptUtil.Hash(userKey) + RandomUtil.GenerateRandomStr(10);
             string recordJson = EncryptUtil.ObjectToJson(record);
             Dictionary<string, string> header = new Dictionary<string, string>();

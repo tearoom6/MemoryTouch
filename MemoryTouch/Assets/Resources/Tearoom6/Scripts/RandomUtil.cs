@@ -90,6 +90,16 @@ public class RandomUtil
     }
 
     /// <summary>
+    /// Get random name.
+    /// </summary>
+    /// <returns>The name.</returns>
+    public static string RandomName()
+    {
+        string[] names = new string[]{"Leon","Orlando","Boris","Denis","Bobby","Kelly","Brown","Sherry","Lucy","Linda","Deanna","Ana","Natasha","Bianca",};
+        return names[RandomInt(0, names.Count() - 1)];
+    }
+
+    /// <summary>
     /// Draw the specified weightedMap.
     /// </summary>
     /// <param name="weightedMap">Weighted map.</param>
