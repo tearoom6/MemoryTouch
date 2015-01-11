@@ -421,44 +421,44 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 break;
             }
             selectMenu = new GameObject();
-            GameObject customLabel1 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.9f), Quaternion.identity) as GameObject;
+            GameObject customLabel1 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.8f), Quaternion.identity) as GameObject;
             customLabel1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_quest"));
             customLabel1.transform.parent = selectMenu.transform;
-            GameObject questStart = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.83f), Quaternion.identity) as GameObject;
+            GameObject questStart = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.7f), Quaternion.identity) as GameObject;
             questStart.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_start"));
             questStart.transform.parent = selectMenu.transform;
             if (GetSavedStage() != 0) {
-                GameObject questContinueStart = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.76f), Quaternion.identity) as GameObject;
+                GameObject questContinueStart = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.6f), Quaternion.identity) as GameObject;
                 questContinueStart.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_continue"));
                 questContinueStart.transform.parent = selectMenu.transform;
             }
-            GameObject customLabel2 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.69f), Quaternion.identity) as GameObject;
+            GameObject customLabel2 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.5f), Quaternion.identity) as GameObject;
             customLabel2.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_challenge"));
             customLabel2.transform.parent = selectMenu.transform;
-            GameObject challengeEasy = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.62f), Quaternion.identity) as GameObject;
+            GameObject challengeEasy = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.4f), Quaternion.identity) as GameObject;
             challengeEasy.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_easy"));
             challengeEasy.transform.parent = selectMenu.transform;
-            GameObject challengeHard = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.55f), Quaternion.identity) as GameObject;
+            GameObject challengeHard = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.3f), Quaternion.identity) as GameObject;
             challengeHard.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_hard"));
             challengeHard.transform.parent = selectMenu.transform;
             if (IsQuestCompleted()) {
-                GameObject challengeExtra = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.48f), Quaternion.identity) as GameObject;
+                GameObject challengeExtra = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.2f), Quaternion.identity) as GameObject;
                 challengeExtra.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_extra"));
                 challengeExtra.transform.parent = selectMenu.transform;
                 challengeExtra.renderer.material.color = Color.white;
             }
-            GameObject customLabel3 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.41f), Quaternion.identity) as GameObject;
-            customLabel3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_practice"));
-            customLabel3.transform.parent = selectMenu.transform;
-            GameObject practice3x3 = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.34f), Quaternion.identity) as GameObject;
-            practice3x3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_3x3"));
-            practice3x3.transform.parent = selectMenu.transform;
-            GameObject practice4x4 = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.27f), Quaternion.identity) as GameObject;
-            practice4x4.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_4x4"));
-            practice4x4.transform.parent = selectMenu.transform;
-            GameObject practice5x5 = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.20f), Quaternion.identity) as GameObject;
-            practice5x5.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_5x5"));
-            practice5x5.transform.parent = selectMenu.transform;
+//            GameObject customLabel3 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.41f), Quaternion.identity) as GameObject;
+//            customLabel3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_practice"));
+//            customLabel3.transform.parent = selectMenu.transform;
+//            GameObject practice3x3 = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.34f), Quaternion.identity) as GameObject;
+//            practice3x3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_3x3"));
+//            practice3x3.transform.parent = selectMenu.transform;
+//            GameObject practice4x4 = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.27f), Quaternion.identity) as GameObject;
+//            practice4x4.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_4x4"));
+//            practice4x4.transform.parent = selectMenu.transform;
+//            GameObject practice5x5 = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.20f), Quaternion.identity) as GameObject;
+//            practice5x5.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_5x5"));
+//            practice5x5.transform.parent = selectMenu.transform;
             backButton.SetActive(true);
             AudioManager.PlayOneShot(this.audio, "button04a");
             StateManager.Next();
