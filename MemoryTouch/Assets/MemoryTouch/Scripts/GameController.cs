@@ -1106,38 +1106,39 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         slideBoards = new GameObject();
 
         // quest mode
+        float baseX = 0f;
         QuestMode sampleQuestMode = new QuestMode();
-        GameObject customBg1 = Instantiate(customBgPanelPrefab, screenManager.WPos(0.5f, 0.5f), Quaternion.identity) as GameObject;
+        GameObject customBg1 = Instantiate(customBgPanelPrefab, screenManager.WPos(baseX + 0.5f, 0.5f), Quaternion.identity) as GameObject;
         customBg1.transform.parent = slideBoards.transform;
-        GameObject customLabel1 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.85f), Quaternion.identity) as GameObject;
+        GameObject customLabel1 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.85f), Quaternion.identity) as GameObject;
         customLabel1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_quest"));
         customLabel1.transform.parent = customBg1.transform;
-        GameObject customLabel1_1 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.77f), Quaternion.identity) as GameObject;
+        GameObject customLabel1_1 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.77f), Quaternion.identity) as GameObject;
         customLabel1_1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel1_1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_best_record"));
         customLabel1_1.transform.parent = customBg1.transform;
-        GameObject customLabel1_2 = Instantiate(customLabelPrefab, screenManager.WPos(0.3f, 0.70f), Quaternion.identity) as GameObject;
+        GameObject customLabel1_2 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.3f, 0.70f), Quaternion.identity) as GameObject;
         customLabel1_2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel1_2.GetComponent<CustomLabel>().SetLabel(localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, ""))
             .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
         customLabel1_2.transform.parent = customBg1.transform;
-        GameObject customLabel1_3 = Instantiate(customLabelPrefab, screenManager.WPos(0.2f, 0.60f), Quaternion.identity) as GameObject;
+        GameObject customLabel1_3 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.60f), Quaternion.identity) as GameObject;
         customLabel1_3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel1_3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_point"))
             .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
         customLabel1_3.transform.parent = customBg1.transform;
-        GameObject customLabel1_4 = Instantiate(customLabelPrefab, screenManager.WPos(0.2f, 0.50f), Quaternion.identity) as GameObject;
+        GameObject customLabel1_4 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.50f), Quaternion.identity) as GameObject;
         customLabel1_4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel1_4.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_stage"))
             .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
         customLabel1_4.transform.parent = customBg1.transform;
-        GameObject customLabel1_5 = Instantiate(customLabelPrefab, screenManager.WPos(0.8f, 0.60f), Quaternion.identity) as GameObject;
+        GameObject customLabel1_5 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.60f), Quaternion.identity) as GameObject;
         customLabel1_5.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel1_5.GetComponent<CustomLabel>().SetLabel(GetRecordPoint(sampleQuestMode.GetModeId()).ToString())
             .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
         customLabel1_5.transform.parent = customBg1.transform;
-        GameObject customLabel1_6 = Instantiate(customLabelPrefab, screenManager.WPos(0.8f, 0.50f), Quaternion.identity) as GameObject;
+        GameObject customLabel1_6 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.50f), Quaternion.identity) as GameObject;
         customLabel1_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         StageInfo questStage = sampleQuestMode.GetStage(GetRecordStage(sampleQuestMode.GetModeId()));
         customLabel1_6.GetComponent<CustomLabel>().SetLabel(string.Format("{0} - {1}", questStage.level, questStage.stageNo))
@@ -1145,102 +1146,65 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         customLabel1_6.transform.parent = customBg1.transform;
         if (IsQuestCompleted()) {
             // クエストモードコンプリートしたら、ユーザ名の隣に王冠表示
-            GameObject crownObj = Instantiate(crownPrefab, screenManager.WPos(0.22f, 0.70f), Quaternion.identity) as GameObject;
+            GameObject crownObj = Instantiate(crownPrefab, screenManager.WPos(baseX + 0.22f, 0.70f), Quaternion.identity) as GameObject;
             crownObj.transform.parent = customBg1.transform;
         }
 
         // challenge easy mode
-        GameObject customBg2 = Instantiate(customBgPanelPrefab, screenManager.WPos(1.5f, 0.5f), Quaternion.identity) as GameObject;
+        baseX = 1f;
+        GameObject customBg2 = Instantiate(customBgPanelPrefab, screenManager.WPos(baseX + 0.5f, 0.5f), Quaternion.identity) as GameObject;
         customBg2.transform.parent = slideBoards.transform;
-        GameObject customLabel2 = Instantiate(customLabelPrefab, screenManager.WPos(1.5f, 0.85f), Quaternion.identity) as GameObject;
+        GameObject customLabel2 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.85f), Quaternion.identity) as GameObject;
         customLabel2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_challenge"));
         customLabel2.transform.parent = customBg2.transform;
-        GameObject customLabel2_0 = Instantiate(customLabelPrefab, screenManager.WPos(1.5f, 0.82f), Quaternion.identity) as GameObject;
+        GameObject customLabel2_0 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.82f), Quaternion.identity) as GameObject;
         customLabel2_0.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2_0.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_easy"))
             .SetColor(Color.yellow);
         customLabel2_0.transform.parent = customBg2.transform;
-        GameObject customLabel2_1 = Instantiate(customLabelPrefab, screenManager.WPos(1.5f, 0.78f), Quaternion.identity) as GameObject;
+        GameObject customLabel2_1 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.78f), Quaternion.identity) as GameObject;
         customLabel2_1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2_1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_best_record"));
         customLabel2_1.transform.parent = customBg2.transform;
-        GameObject customLabel2_2 = Instantiate(customLabelPrefab, screenManager.WPos(1.5f, 0.60f), Quaternion.identity) as GameObject;
+        GameObject customLabel2_2 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.60f), Quaternion.identity) as GameObject;
         customLabel2_2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2_2.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_ranking"));
         customLabel2_2.transform.parent = customBg2.transform;
-        GameObject customLabel2_3 = Instantiate(customLabelPrefab, screenManager.WPos(1.2f, 0.72f), Quaternion.identity) as GameObject;
+        GameObject customLabel2_3 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.72f), Quaternion.identity) as GameObject;
         customLabel2_3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2_3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_point"))
             .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
         customLabel2_3.transform.parent = customBg2.transform;
-        GameObject customLabel2_4 = Instantiate(customLabelPrefab, screenManager.WPos(1.2f, 0.68f), Quaternion.identity) as GameObject;
+        GameObject customLabel2_4 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.68f), Quaternion.identity) as GameObject;
         customLabel2_4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2_4.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_stage"))
             .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
         customLabel2_4.transform.parent = customBg2.transform;
-        GameObject customLabel2_5 = Instantiate(customLabelPrefab, screenManager.WPos(1.8f, 0.72f), Quaternion.identity) as GameObject;
+        GameObject customLabel2_5 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.72f), Quaternion.identity) as GameObject;
         customLabel2_5.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2_5.GetComponent<CustomLabel>().SetLabel(GetRecordPoint(new ChallengeMode(1).GetModeId()).ToString())
             .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
         customLabel2_5.transform.parent = customBg2.transform;
-        GameObject customLabel2_6 = Instantiate(customLabelPrefab, screenManager.WPos(1.8f, 0.68f), Quaternion.identity) as GameObject;
+        GameObject customLabel2_6 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.68f), Quaternion.identity) as GameObject;
         customLabel2_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel2_6.GetComponent<CustomLabel>().SetLabel(GetRecordStage(new ChallengeMode(1).GetModeId()).ToString())
             .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
         customLabel2_6.transform.parent = customBg2.transform;
         List<CustomLabel> rankLabels2 = new List<CustomLabel>();
         List<CustomLabel> rankPointLabels2 = new List<CustomLabel>();
-        GameObject rankingLabel2_1 = Instantiate(customLabelPrefab, screenManager.WPos(1.15f, 0.55f), Quaternion.identity) as GameObject;
-        rankingLabel2_1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_1.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel2_1.transform.parent = customBg2.transform;
-        rankLabels2.Add(rankingLabel2_1.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_2 = Instantiate(customLabelPrefab, screenManager.WPos(1.15f, 0.50f), Quaternion.identity) as GameObject;
-        rankingLabel2_2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_2.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel2_2.transform.parent = customBg2.transform;
-        rankLabels2.Add(rankingLabel2_2.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_3 = Instantiate(customLabelPrefab, screenManager.WPos(1.15f, 0.45f), Quaternion.identity) as GameObject;
-        rankingLabel2_3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_3.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel2_3.transform.parent = customBg2.transform;
-        rankLabels2.Add(rankingLabel2_3.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_4 = Instantiate(customLabelPrefab, screenManager.WPos(1.15f, 0.40f), Quaternion.identity) as GameObject;
-        rankingLabel2_4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_4.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel2_4.transform.parent = customBg2.transform;
-        rankLabels2.Add(rankingLabel2_4.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_5 = Instantiate(customLabelPrefab, screenManager.WPos(1.15f, 0.35f), Quaternion.identity) as GameObject;
-        rankingLabel2_5.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_5.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel2_5.transform.parent = customBg2.transform;
-        rankLabels2.Add(rankingLabel2_5.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_6 = Instantiate(customLabelPrefab, screenManager.WPos(1.85f, 0.55f), Quaternion.identity) as GameObject;
-        rankingLabel2_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_6.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel2_6.transform.parent = customBg2.transform;
-        rankPointLabels2.Add(rankingLabel2_6.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_7 = Instantiate(customLabelPrefab, screenManager.WPos(1.85f, 0.50f), Quaternion.identity) as GameObject;
-        rankingLabel2_7.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_7.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel2_7.transform.parent = customBg2.transform;
-        rankPointLabels2.Add(rankingLabel2_7.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_8 = Instantiate(customLabelPrefab, screenManager.WPos(1.85f, 0.45f), Quaternion.identity) as GameObject;
-        rankingLabel2_8.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_8.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel2_8.transform.parent = customBg2.transform;
-        rankPointLabels2.Add(rankingLabel2_8.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_9 = Instantiate(customLabelPrefab, screenManager.WPos(1.85f, 0.40f), Quaternion.identity) as GameObject;
-        rankingLabel2_9.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_9.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel2_9.transform.parent = customBg2.transform;
-        rankPointLabels2.Add(rankingLabel2_9.GetComponent<CustomLabel>());
-        GameObject rankingLabel2_10 = Instantiate(customLabelPrefab, screenManager.WPos(1.85f, 0.35f), Quaternion.identity) as GameObject;
-        rankingLabel2_10.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel2_10.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel2_10.transform.parent = customBg2.transform;
-        rankPointLabels2.Add(rankingLabel2_10.GetComponent<CustomLabel>());
+        for (int i = 0; i < 5; i++) {
+            GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+            rankLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+            rankLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
+            rankLabel.transform.parent = customBg2.transform;
+            rankLabels2.Add(rankLabel.GetComponent<CustomLabel>());
+            GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+            rankPointLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+            rankPointLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
+            rankPointLabel.transform.parent = customBg2.transform;
+            rankPointLabels2.Add(rankPointLabel.GetComponent<CustomLabel>());
+        }
 
         Dictionary<string, string> header = new Dictionary<string, string>();
         header.Add("Accept", "application/json");
@@ -1249,212 +1213,138 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             {
                 List<RankingRecord> records2 = EncryptUtil.JsonToObject<List<RankingRecord>>(www.text);
                 for(int i = 0; i < records2.Count; i++) {
-                    rankLabels2[i].SetLabel(string.Format("{0} {1}", records2[i].rank, records2[i].name));
+                    rankLabels2[i].SetLabel(string.Format("{0}  {1}", records2[i].rank, records2[i].name));
                     rankPointLabels2[i].SetLabel(records2[i].point.ToString());
                 }
             }));
 
         // challenge hard mode
-        GameObject customBg3 = Instantiate(customBgPanelPrefab, screenManager.WPos(2.5f, 0.5f), Quaternion.identity) as GameObject;
+        baseX = 2f;
+        GameObject customBg3 = Instantiate(customBgPanelPrefab, screenManager.WPos(baseX + 0.5f, 0.5f), Quaternion.identity) as GameObject;
         customBg3.transform.parent = slideBoards.transform;
-        GameObject customLabel3 = Instantiate(customLabelPrefab, screenManager.WPos(2.5f, 0.85f), Quaternion.identity) as GameObject;
+        GameObject customLabel3 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.85f), Quaternion.identity) as GameObject;
         customLabel3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_challenge"));
         customLabel3.transform.parent = customBg3.transform;
-        GameObject customLabel3_0 = Instantiate(customLabelPrefab, screenManager.WPos(2.5f, 0.82f), Quaternion.identity) as GameObject;
+        GameObject customLabel3_0 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.82f), Quaternion.identity) as GameObject;
         customLabel3_0.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3_0.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_hard"))
             .SetColor(Color.yellow);
         customLabel3_0.transform.parent = customBg3.transform;
-        GameObject customLabel3_1 = Instantiate(customLabelPrefab, screenManager.WPos(2.5f, 0.78f), Quaternion.identity) as GameObject;
+        GameObject customLabel3_1 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.78f), Quaternion.identity) as GameObject;
         customLabel3_1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3_1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_best_record"));
         customLabel3_1.transform.parent = customBg3.transform;
-        GameObject customLabel3_2 = Instantiate(customLabelPrefab, screenManager.WPos(2.5f, 0.60f), Quaternion.identity) as GameObject;
+        GameObject customLabel3_2 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.60f), Quaternion.identity) as GameObject;
         customLabel3_2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3_2.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_ranking"));
         customLabel3_2.transform.parent = customBg3.transform;
-        GameObject customLabel3_3 = Instantiate(customLabelPrefab, screenManager.WPos(2.2f, 0.72f), Quaternion.identity) as GameObject;
+        GameObject customLabel3_3 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.72f), Quaternion.identity) as GameObject;
         customLabel3_3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3_3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_point"))
             .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
         customLabel3_3.transform.parent = customBg3.transform;
-        GameObject customLabel3_4 = Instantiate(customLabelPrefab, screenManager.WPos(2.2f, 0.68f), Quaternion.identity) as GameObject;
+        GameObject customLabel3_4 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.68f), Quaternion.identity) as GameObject;
         customLabel3_4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3_4.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_stage"))
             .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
         customLabel3_4.transform.parent = customBg3.transform;
-        GameObject customLabel3_5 = Instantiate(customLabelPrefab, screenManager.WPos(2.8f, 0.72f), Quaternion.identity) as GameObject;
+        GameObject customLabel3_5 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.72f), Quaternion.identity) as GameObject;
         customLabel3_5.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3_5.GetComponent<CustomLabel>().SetLabel(GetRecordPoint(new ChallengeMode(2).GetModeId()).ToString())
             .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
         customLabel3_5.transform.parent = customBg3.transform;
-        GameObject customLabel3_6 = Instantiate(customLabelPrefab, screenManager.WPos(2.8f, 0.68f), Quaternion.identity) as GameObject;
+        GameObject customLabel3_6 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.68f), Quaternion.identity) as GameObject;
         customLabel3_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         customLabel3_6.GetComponent<CustomLabel>().SetLabel(GetRecordStage(new ChallengeMode(2).GetModeId()).ToString())
             .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
         customLabel3_6.transform.parent = customBg3.transform;
         List<CustomLabel> rankLabels3 = new List<CustomLabel>();
         List<CustomLabel> rankPointLabels3 = new List<CustomLabel>();
-        GameObject rankingLabel3_1 = Instantiate(customLabelPrefab, screenManager.WPos(2.15f, 0.55f), Quaternion.identity) as GameObject;
-        rankingLabel3_1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_1.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel3_1.transform.parent = customBg3.transform;
-        rankLabels3.Add(rankingLabel3_1.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_2 = Instantiate(customLabelPrefab, screenManager.WPos(2.15f, 0.50f), Quaternion.identity) as GameObject;
-        rankingLabel3_2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_2.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel3_2.transform.parent = customBg3.transform;
-        rankLabels3.Add(rankingLabel3_2.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_3 = Instantiate(customLabelPrefab, screenManager.WPos(2.15f, 0.45f), Quaternion.identity) as GameObject;
-        rankingLabel3_3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_3.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel3_3.transform.parent = customBg3.transform;
-        rankLabels3.Add(rankingLabel3_3.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_4 = Instantiate(customLabelPrefab, screenManager.WPos(2.15f, 0.40f), Quaternion.identity) as GameObject;
-        rankingLabel3_4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_4.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel3_4.transform.parent = customBg3.transform;
-        rankLabels3.Add(rankingLabel3_4.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_5 = Instantiate(customLabelPrefab, screenManager.WPos(2.15f, 0.35f), Quaternion.identity) as GameObject;
-        rankingLabel3_5.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_5.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-        rankingLabel3_5.transform.parent = customBg3.transform;
-        rankLabels3.Add(rankingLabel3_5.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_6 = Instantiate(customLabelPrefab, screenManager.WPos(2.85f, 0.55f), Quaternion.identity) as GameObject;
-        rankingLabel3_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_6.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel3_6.transform.parent = customBg3.transform;
-        rankPointLabels3.Add(rankingLabel3_6.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_7 = Instantiate(customLabelPrefab, screenManager.WPos(2.85f, 0.50f), Quaternion.identity) as GameObject;
-        rankingLabel3_7.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_7.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel3_7.transform.parent = customBg3.transform;
-        rankPointLabels3.Add(rankingLabel3_7.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_8 = Instantiate(customLabelPrefab, screenManager.WPos(2.85f, 0.45f), Quaternion.identity) as GameObject;
-        rankingLabel3_8.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_8.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel3_8.transform.parent = customBg3.transform;
-        rankPointLabels3.Add(rankingLabel3_8.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_9 = Instantiate(customLabelPrefab, screenManager.WPos(2.85f, 0.40f), Quaternion.identity) as GameObject;
-        rankingLabel3_9.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_9.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel3_9.transform.parent = customBg3.transform;
-        rankPointLabels3.Add(rankingLabel3_9.GetComponent<CustomLabel>());
-        GameObject rankingLabel3_10 = Instantiate(customLabelPrefab, screenManager.WPos(2.85f, 0.35f), Quaternion.identity) as GameObject;
-        rankingLabel3_10.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-        rankingLabel3_10.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-        rankingLabel3_10.transform.parent = customBg3.transform;
-        rankPointLabels3.Add(rankingLabel3_10.GetComponent<CustomLabel>());
+        for (int i = 0; i < 5; i++) {
+            GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+            rankLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+            rankLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
+            rankLabel.transform.parent = customBg3.transform;
+            rankLabels3.Add(rankLabel.GetComponent<CustomLabel>());
+            GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+            rankPointLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+            rankPointLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
+            rankPointLabel.transform.parent = customBg3.transform;
+            rankPointLabels3.Add(rankPointLabel.GetComponent<CustomLabel>());
+        }
 
         networkManager.GET(string.Format(GameConstants.API_URL_GET_RANKING_RECORDS, new ChallengeMode(2).GetModeId()).ToString(), header, (System.Action<WWW>)((WWW www) =>
             {
                 List<RankingRecord> records3 = EncryptUtil.JsonToObject<List<RankingRecord>>(www.text);
                 for(int i = 0; i < records3.Count; i++) {
-                    rankLabels3[i].SetLabel(string.Format("{0} {1}", records3[i].rank, records3[i].name));
+                    rankLabels3[i].SetLabel(string.Format("{0}  {1}", records3[i].rank, records3[i].name));
                     rankPointLabels3[i].SetLabel(records3[i].point.ToString());
                 }
             }));
 
         if (IsQuestCompleted()) {
             // クエストモードコンプリートしたら、エクストラモード解禁
-            GameObject customBg4 = Instantiate(customBgPanelPrefab, screenManager.WPos(3.5f, 0.5f), Quaternion.identity) as GameObject;
+            baseX = 3f;
+            GameObject customBg4 = Instantiate(customBgPanelPrefab, screenManager.WPos(baseX + 0.5f, 0.5f), Quaternion.identity) as GameObject;
             customBg4.transform.parent = slideBoards.transform;
-            GameObject customLabel4 = Instantiate(customLabelPrefab, screenManager.WPos(3.5f, 0.85f), Quaternion.identity) as GameObject;
+            GameObject customLabel4 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.85f), Quaternion.identity) as GameObject;
             customLabel4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_challenge"));
             customLabel4.transform.parent = customBg4.transform;
-            GameObject customLabel4_0 = Instantiate(customLabelPrefab, screenManager.WPos(3.5f, 0.82f), Quaternion.identity) as GameObject;
+            GameObject customLabel4_0 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.82f), Quaternion.identity) as GameObject;
             customLabel4_0.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4_0.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_extra"))
                 .SetColor(Color.yellow);
             customLabel4_0.transform.parent = customBg4.transform;
-            GameObject customLabel4_1 = Instantiate(customLabelPrefab, screenManager.WPos(3.5f, 0.78f), Quaternion.identity) as GameObject;
+            GameObject customLabel4_1 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.78f), Quaternion.identity) as GameObject;
             customLabel4_1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4_1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_best_record"));
             customLabel4_1.transform.parent = customBg4.transform;
-            GameObject customLabel4_2 = Instantiate(customLabelPrefab, screenManager.WPos(3.5f, 0.60f), Quaternion.identity) as GameObject;
+            GameObject customLabel4_2 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.5f, 0.60f), Quaternion.identity) as GameObject;
             customLabel4_2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4_2.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_ranking"));
             customLabel4_2.transform.parent = customBg4.transform;
-            GameObject customLabel4_3 = Instantiate(customLabelPrefab, screenManager.WPos(3.2f, 0.72f), Quaternion.identity) as GameObject;
+            GameObject customLabel4_3 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.72f), Quaternion.identity) as GameObject;
             customLabel4_3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4_3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_point"))
                 .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
             customLabel4_3.transform.parent = customBg4.transform;
-            GameObject customLabel4_4 = Instantiate(customLabelPrefab, screenManager.WPos(3.2f, 0.68f), Quaternion.identity) as GameObject;
+            GameObject customLabel4_4 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.2f, 0.68f), Quaternion.identity) as GameObject;
             customLabel4_4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4_4.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_stage"))
                 .SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
             customLabel4_4.transform.parent = customBg4.transform;
-            GameObject customLabel4_5 = Instantiate(customLabelPrefab, screenManager.WPos(3.8f, 0.72f), Quaternion.identity) as GameObject;
+            GameObject customLabel4_5 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.72f), Quaternion.identity) as GameObject;
             customLabel4_5.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4_5.GetComponent<CustomLabel>().SetLabel(GetRecordPoint(new ChallengeMode(9).GetModeId()).ToString())
                 .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
             customLabel4_5.transform.parent = customBg4.transform;
-            GameObject customLabel4_6 = Instantiate(customLabelPrefab, screenManager.WPos(3.8f, 0.68f), Quaternion.identity) as GameObject;
+            GameObject customLabel4_6 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.68f), Quaternion.identity) as GameObject;
             customLabel4_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             customLabel4_6.GetComponent<CustomLabel>().SetLabel(GetRecordStage(new ChallengeMode(9).GetModeId()).ToString())
                 .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
             customLabel4_6.transform.parent = customBg4.transform;
             List<CustomLabel> rankLabels4 = new List<CustomLabel>();
             List<CustomLabel> rankPointLabels4 = new List<CustomLabel>();
-            GameObject rankingLabel4_1 = Instantiate(customLabelPrefab, screenManager.WPos(3.15f, 0.55f), Quaternion.identity) as GameObject;
-            rankingLabel4_1.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_1.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-            rankingLabel4_1.transform.parent = customBg4.transform;
-            rankLabels4.Add(rankingLabel4_1.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_2 = Instantiate(customLabelPrefab, screenManager.WPos(3.15f, 0.50f), Quaternion.identity) as GameObject;
-            rankingLabel4_2.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_2.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-            rankingLabel4_2.transform.parent = customBg4.transform;
-            rankLabels4.Add(rankingLabel4_2.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_3 = Instantiate(customLabelPrefab, screenManager.WPos(3.15f, 0.45f), Quaternion.identity) as GameObject;
-            rankingLabel4_3.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_3.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-            rankingLabel4_3.transform.parent = customBg4.transform;
-            rankLabels4.Add(rankingLabel4_3.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_4 = Instantiate(customLabelPrefab, screenManager.WPos(3.15f, 0.40f), Quaternion.identity) as GameObject;
-            rankingLabel4_4.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_4.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-            rankingLabel4_4.transform.parent = customBg4.transform;
-            rankLabels4.Add(rankingLabel4_4.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_5 = Instantiate(customLabelPrefab, screenManager.WPos(3.15f, 0.35f), Quaternion.identity) as GameObject;
-            rankingLabel4_5.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_5.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
-            rankingLabel4_5.transform.parent = customBg4.transform;
-            rankLabels4.Add(rankingLabel4_5.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_6 = Instantiate(customLabelPrefab, screenManager.WPos(3.85f, 0.55f), Quaternion.identity) as GameObject;
-            rankingLabel4_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_6.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-            rankingLabel4_6.transform.parent = customBg4.transform;
-            rankPointLabels4.Add(rankingLabel4_6.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_7 = Instantiate(customLabelPrefab, screenManager.WPos(3.85f, 0.50f), Quaternion.identity) as GameObject;
-            rankingLabel4_7.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_7.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-            rankingLabel4_7.transform.parent = customBg4.transform;
-            rankPointLabels4.Add(rankingLabel4_7.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_8 = Instantiate(customLabelPrefab, screenManager.WPos(3.85f, 0.45f), Quaternion.identity) as GameObject;
-            rankingLabel4_8.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_8.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-            rankingLabel4_8.transform.parent = customBg4.transform;
-            rankPointLabels4.Add(rankingLabel4_8.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_9 = Instantiate(customLabelPrefab, screenManager.WPos(3.85f, 0.40f), Quaternion.identity) as GameObject;
-            rankingLabel4_9.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_9.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-            rankingLabel4_9.transform.parent = customBg4.transform;
-            rankPointLabels4.Add(rankingLabel4_9.GetComponent<CustomLabel>());
-            GameObject rankingLabel4_10 = Instantiate(customLabelPrefab, screenManager.WPos(3.85f, 0.35f), Quaternion.identity) as GameObject;
-            rankingLabel4_10.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-            rankingLabel4_10.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
-            rankingLabel4_10.transform.parent = customBg4.transform;
-            rankPointLabels4.Add(rankingLabel4_10.GetComponent<CustomLabel>());
+            for (int i = 0; i < 5; i++) {
+                GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+                rankLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+                rankLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
+                rankLabel.transform.parent = customBg4.transform;
+                rankLabels4.Add(rankLabel.GetComponent<CustomLabel>());
+                GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+                rankPointLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+                rankPointLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
+                rankPointLabel.transform.parent = customBg4.transform;
+                rankPointLabels4.Add(rankPointLabel.GetComponent<CustomLabel>());
+            }
 
             networkManager.GET(string.Format(GameConstants.API_URL_GET_RANKING_RECORDS, new ChallengeMode(9).GetModeId()).ToString(), header, (System.Action<WWW>)((WWW www) =>
                 {
                     List<RankingRecord> records4 = EncryptUtil.JsonToObject<List<RankingRecord>>(www.text);
                     for(int i = 0; i < records4.Count; i++) {
-                        rankLabels4[i].SetLabel(string.Format("{0} {1}", records4[i].rank, records4[i].name));
+                        rankLabels4[i].SetLabel(string.Format("{0}  {1}", records4[i].rank, records4[i].name));
                         rankPointLabels4[i].SetLabel(records4[i].point.ToString());
                     }
                 }));
