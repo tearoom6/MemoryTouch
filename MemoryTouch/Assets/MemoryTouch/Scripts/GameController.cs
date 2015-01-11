@@ -1064,8 +1064,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         else
         {
             // touch wrong panel
-            touchPanel.Flick(new FlickInfo(Color.blue, 10f, 5f));
-            stageManager.GetStepGoalPanel(currentStepIndex).Flick(new FlickInfo(Color.red, 10f, 5f));
+//            touchPanel.Flick(new FlickInfo(Color.red, 10f, 5f));
+            stageManager.GetStepGoalPanel(currentStepIndex).Flick(new FlickInfo(Color.yellow, 10f, 5f));
             AudioManager.PlayOneShot(this.audio, "baku013", 0.5f);
             stageManager.SetStageDialogDescription(propertyManager.Get("description_failed"));
             Toast(propertyManager.Get("toast_touch_wrong_panel"));
