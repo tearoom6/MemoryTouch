@@ -476,7 +476,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 if (raycastHit.collider.gameObject.GetComponent<CustomLabel>().GetLabel() == propertyManager.Get("button_menu_start"))
                 {
                     stageManager.mode = new QuestMode();
-                    DeleteSaveStage();
+//                    DeleteSaveStage();
                 }
                 else if (raycastHit.collider.gameObject.GetComponent<CustomLabel>().GetLabel() == propertyManager.Get("button_menu_continue"))
                 {
@@ -598,6 +598,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         case StateManager.State.FAILED:
             RenderSettings.ambientLight = originalAmbientColor;
             SaveRecord();
+            SaveStage();
             InitilizeGame();
             if (stageManager.mode.GetType() == typeof(PracticeMode))
             {
@@ -838,6 +839,16 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     }
 
     /// <summary>
+    /// クエストモードでセーブした進行中ステージ情報を破棄します。
+    /// </summary>
+    private void DeleteSaveStage()
+    {
+        if (stageManager.mode.GetType() != typeof(QuestMode))
+            return;
+        localDataStore.Delete(string.Format(GameConstants.PREF_KEY_STAGE_CONTINUE, stageManager.mode.GetModeId()));
+    }
+
+    /// <summary>
     /// 現在のチュートリアルレベルを更新します。
     /// チュートリアルは出現順を限定しないように2進数のフラグで管理します。
     /// </summary>
@@ -856,16 +867,6 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     private int GetTutorialLevel()
     {
         return localDataStore.Load(GameConstants.PREF_KEY_TUTORIAL_LEVEL, 0);
-    }
-
-    /// <summary>
-    /// クエストモードでセーブした進行中ステージ情報を破棄します。
-    /// </summary>
-    private void DeleteSaveStage()
-    {
-        if (stageManager.mode.GetType() != typeof(QuestMode))
-            return;
-        localDataStore.Delete(string.Format(GameConstants.PREF_KEY_STAGE_CONTINUE, stageManager.mode.GetModeId()));
     }
 
     /// <summary>
