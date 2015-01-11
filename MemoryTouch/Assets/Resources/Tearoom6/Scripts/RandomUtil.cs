@@ -95,7 +95,17 @@ public class RandomUtil
     /// <returns>The name.</returns>
     public static string RandomName()
     {
-        string[] names = new string[]{"Leon","Orlando","Boris","Denis","Bobby","Kelly","Brown","Sherry","Lucy","Linda","Deanna","Ana","Natasha","Bianca",};
+        string[] names = new string[]{ "Default" };
+        switch (Application.systemLanguage)
+        {
+        case SystemLanguage.Japanese:
+            names = new string[]{"あつし","ひろと","たかし","かずや","のりと","たくや","まさる","みき","なお","さき","えり","ゆき","みお","るい",};
+            break;
+        case SystemLanguage.English:
+        default:
+            names = new string[]{"Leon","Orlando","Boris","Denis","Bobby","Kelly","Brown","Sherry","Lucy","Linda","Deanna","Ana","Natasha","Bianca",};
+            break;
+        }
         return names[RandomInt(0, names.Count() - 1)];
     }
 

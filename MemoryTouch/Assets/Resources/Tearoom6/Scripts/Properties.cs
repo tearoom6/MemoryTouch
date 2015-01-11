@@ -21,6 +21,7 @@ public class Properties
                 locale = "ja";
                 break;
             case SystemLanguage.English:
+            default:
                 locale = "en";
                 break;
         }
