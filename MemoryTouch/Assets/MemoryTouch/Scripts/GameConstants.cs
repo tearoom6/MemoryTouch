@@ -24,6 +24,8 @@ public class GameConstants
 
     public static string RESOURCE_PREFAB_TOUCH_EFFECT = "MemoryTouch/Prefabs/TouchEffect";
 
+    public static string RESOURCE_PREFAB_TRAIL_EFFECT = "MemoryTouch/Prefabs/TrailEffect";
+
     public static string RESOURCE_PREFAB_TWINKLE_EFFECT = "MemoryTouch/Prefabs/TwinkleEffect";
 
     public static string RESOURCE_PREFAB_HELP_BOARD_1 = "MemoryTouch/Prefabs/HelpBoard1";

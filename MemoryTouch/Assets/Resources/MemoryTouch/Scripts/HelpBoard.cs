@@ -22,6 +22,7 @@ public abstract class HelpBoard : MonoBehaviour {
 
     private GameObject panelPrefab;
     private GameObject fingerPrefab;
+    private GameObject trailEffectPrefab;
     private GameObject customDialogPrefab;
     private GameObject customLabelPrefab;
 
@@ -43,6 +44,8 @@ public abstract class HelpBoard : MonoBehaviour {
         Logger.Info(panelPrefab.name + " prefab is loaded.", this);
         fingerPrefab = Resources.Load(GameConstants.RESOURCE_PREFAB_FINGER) as GameObject;
         Logger.Info(fingerPrefab.name + " prefab is loaded.", this);
+        trailEffectPrefab = Resources.Load(GameConstants.RESOURCE_PREFAB_TRAIL_EFFECT) as GameObject;
+        Logger.Info(trailEffectPrefab.name + " prefab is loaded.", this);
         customDialogPrefab = Resources.Load(GameConstants.RESOURCE_PREFAB_CUSTOM_DIALOG) as GameObject;
         Logger.Info(customDialogPrefab.name + " prefab is loaded.", this);
         customLabelPrefab = Resources.Load(GameConstants.RESOURCE_PREFAB_CUSTOM_LABEL) as GameObject;
@@ -137,6 +140,9 @@ public abstract class HelpBoard : MonoBehaviour {
         }
         // move
         fingerObj.transform.Translate(pathInfos[fingerMoveStep].Direction * FINGER_MOVE_RATE, Space.Self);
+        GameObject trailEffect = Instantiate(trailEffectPrefab, fingerObj.transform.position, Quaternion.identity) as GameObject;
+        trailEffect.transform.parent = this.transform;
+        Destroy(trailEffect, 1.0f);
 //        fingerObj.transform.position = new Vector3(
 //            fingerObj.transform.position.x + (pathInfos[fingerMoveStep].Direction.x * FINGER_MOVE_RATE),
 //            fingerObj.transform.position.y + (pathInfos[fingerMoveStep].Direction.y * FINGER_MOVE_RATE),
