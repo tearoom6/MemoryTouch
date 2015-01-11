@@ -14,6 +14,8 @@ public class GameConstants
 
     public static int POINT_TIME_BONUS_FOR_SECOND = 20;
 
+    public static int GET_RANKING_RECORD_COUNT = 10;
+
     public static string API_URL_POST_RANKING_RECORD = "http://tearoom6-api.appspot.com/rest/memorytouch/rankingrecords/";
 
     public static string API_URL_GET_RANKING_RECORDS = "http://tearoom6-api.appspot.com/rest/memorytouch/rankingrecords/{0}/";

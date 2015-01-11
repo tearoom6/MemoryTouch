@@ -1193,13 +1193,13 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         customLabel2_6.transform.parent = customBg2.transform;
         List<CustomLabel> rankLabels2 = new List<CustomLabel>();
         List<CustomLabel> rankPointLabels2 = new List<CustomLabel>();
-        for (int i = 0; i < 5; i++) {
-            GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+        for (int i = 0; i < GameConstants.GET_RANKING_RECORD_COUNT; i++) {
+            GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.04f * i), Quaternion.identity) as GameObject;
             rankLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             rankLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
             rankLabel.transform.parent = customBg2.transform;
             rankLabels2.Add(rankLabel.GetComponent<CustomLabel>());
-            GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+            GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.04f * i), Quaternion.identity) as GameObject;
             rankPointLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             rankPointLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
             rankPointLabel.transform.parent = customBg2.transform;
@@ -1261,13 +1261,13 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         customLabel3_6.transform.parent = customBg3.transform;
         List<CustomLabel> rankLabels3 = new List<CustomLabel>();
         List<CustomLabel> rankPointLabels3 = new List<CustomLabel>();
-        for (int i = 0; i < 5; i++) {
-            GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+        for (int i = 0; i < GameConstants.GET_RANKING_RECORD_COUNT; i++) {
+            GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.04f * i), Quaternion.identity) as GameObject;
             rankLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             rankLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
             rankLabel.transform.parent = customBg3.transform;
             rankLabels3.Add(rankLabel.GetComponent<CustomLabel>());
-            GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+            GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.04f * i), Quaternion.identity) as GameObject;
             rankPointLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             rankPointLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
             rankPointLabel.transform.parent = customBg3.transform;
@@ -1327,13 +1327,13 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             customLabel4_6.transform.parent = customBg4.transform;
             List<CustomLabel> rankLabels4 = new List<CustomLabel>();
             List<CustomLabel> rankPointLabels4 = new List<CustomLabel>();
-            for (int i = 0; i < 5; i++) {
-                GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+            for (int i = 0; i < GameConstants.GET_RANKING_RECORD_COUNT; i++) {
+                GameObject rankLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.15f, 0.55f - 0.04f * i), Quaternion.identity) as GameObject;
                 rankLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
                 rankLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleLeft).SetColor(Color.yellow);
                 rankLabel.transform.parent = customBg4.transform;
                 rankLabels4.Add(rankLabel.GetComponent<CustomLabel>());
-                GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.05f * i), Quaternion.identity) as GameObject;
+                GameObject rankPointLabel = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.85f, 0.55f - 0.04f * i), Quaternion.identity) as GameObject;
                 rankPointLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
                 rankPointLabel.GetComponent<CustomLabel>().SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
                 rankPointLabel.transform.parent = customBg4.transform;
