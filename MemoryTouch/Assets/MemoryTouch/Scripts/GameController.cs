@@ -1376,21 +1376,24 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     IEnumerator CountTimeBonus()
     {
         yield return new WaitForSeconds(0.5f);
+        float countupSeconds = 0.2f;
+        int addPoint = 0;
         int timeBonus = 0;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 300; i++)
         {
-            yield return new WaitForSeconds(0.2f);
-            if (seconds < 1f)
+            yield return new WaitForSeconds(0.05f);
+            if (seconds < countupSeconds)
             {
-                int addPoint = (int)Mathf.Floor(GameConstants.POINT_TIME_BONUS_FOR_SECOND * seconds);
+                addPoint = (int)Mathf.Floor(GameConstants.POINT_TIME_BONUS_FOR_SECOND * countupSeconds * seconds);
                 timeBonus += addPoint;
                 AddPoint(addPoint);
                 InitSeconds();
                 break;
             }
-            timeBonus += GameConstants.POINT_TIME_BONUS_FOR_SECOND;
-            AddPoint(GameConstants.POINT_TIME_BONUS_FOR_SECOND);
-            seconds -= 1f;
+            addPoint = (int)Mathf.Floor(GameConstants.POINT_TIME_BONUS_FOR_SECOND * countupSeconds);
+            timeBonus += addPoint;
+            AddPoint(addPoint);
+            seconds -= countupSeconds;
         }
         Toast(propertyManager.Get("toast_time_bonus", timeBonus), 2.0f);
         Scheduler.AddSchedule(GameConstants.TIMER_KEY_WAIT_NEXT_STAGE, 2.0f, (System.Action)(() =>
