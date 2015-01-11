@@ -18,6 +18,7 @@ public class TouchHandler : MonoBehaviour
     private List<TouchListener> touchUpListeners = new List<TouchListener>();
 
     private bool isTouching = false;
+    private bool isFirstTouch = false;
     private Vector3 touchOrigin;
     private Vector3 touchOriginViewport;
 
@@ -29,81 +30,82 @@ public class TouchHandler : MonoBehaviour
 
     void Update()
     {
+        Vector3 worldPoint = Input.mousePosition;
+        Vector3 viewportPoint = Camera.main.ScreenToViewportPoint(worldPoint);
         if (Input.GetMouseButtonDown(0))
         {
-            OnTouchDown();
+            OnTouchDown(worldPoint, viewportPoint);
+            isTouching = true;
+            isFirstTouch = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            OnTouchUp();
+            OnTouchUp(worldPoint, viewportPoint);
+            isTouching = false;
         }
 
         if (isTouching)
         {
-            OnTouching();
+            OnTouching(worldPoint, viewportPoint);
+            isFirstTouch = false;
         }
     }
 
-    private void OnTouchDown()
+    private void OnTouchDown(Vector3 worldPoint, Vector3 viewportPoint)
     {
-        Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         // touch down
         foreach (TouchListener listener in touchDownListeners)
         {
-            listener.OnTouchDown(new TouchInfo(Input.mousePosition, touchPos, Input.mousePosition, touchPos, Time.deltaTime));
+            listener.OnTouchDown(new TouchInfo(worldPoint, viewportPoint, worldPoint, viewportPoint, Time.deltaTime, isFirstTouch));
         }
         // panel touch down
-        Panel panel = JudgeTouchedPanel(touchPos);
+        Panel panel = JudgeTouchedPanel(viewportPoint);
         if (panel != null)
         {
             foreach (PanelTouchListener listener in panelTouchDownListeners)
             {
-                listener.OnPanelTouchDown(new PanelTouchInfo(Input.mousePosition, touchPos, Input.mousePosition, touchPos, Time.deltaTime, panel));
+                listener.OnPanelTouchDown(new PanelTouchInfo(worldPoint, viewportPoint, worldPoint, viewportPoint, Time.deltaTime, isFirstTouch, panel));
             }
         }
-        isTouching = true;
-        touchOrigin = Input.mousePosition;
-        touchOriginViewport = touchPos;
+        touchOrigin = worldPoint;
+        touchOriginViewport = viewportPoint;
     }
 
-    private void OnTouching()
+    private void OnTouching(Vector3 worldPoint, Vector3 viewportPoint)
     {
-        Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         // touching
         foreach (TouchListener listener in touchingListeners)
         {
-            listener.OnTouching(new TouchInfo(Input.mousePosition, touchPos, touchOrigin, touchOriginViewport, Time.deltaTime));
+            listener.OnTouching(new TouchInfo(worldPoint, viewportPoint, touchOrigin, touchOriginViewport, Time.deltaTime, isFirstTouch));
         }
         // panel touching
-        Panel panel = JudgeTouchedPanel(touchPos);
+        Panel panel = JudgeTouchedPanel(viewportPoint);
         if (panel != null)
         {
             foreach (PanelTouchListener listener in panelTouchingListeners)
             {
-                listener.OnPanelTouching(new PanelTouchInfo(Input.mousePosition, touchPos, touchOrigin, touchOriginViewport, Time.deltaTime, panel));
+                listener.OnPanelTouching(new PanelTouchInfo(worldPoint, viewportPoint, touchOrigin, touchOriginViewport, Time.deltaTime, isFirstTouch, panel));
             }
         }
     }
 
-    private void OnTouchUp()
+    private void OnTouchUp(Vector3 worldPoint, Vector3 viewportPoint)
     {
-        Vector3 touchPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         // touch up
         foreach (TouchListener listener in touchUpListeners)
         {
-            listener.OnTouchUp(new TouchInfo(Input.mousePosition, touchPos, touchOrigin, touchOriginViewport, Time.deltaTime));
+            listener.OnTouchUp(new TouchInfo(worldPoint, viewportPoint, touchOrigin, touchOriginViewport, Time.deltaTime, isFirstTouch));
         }
         // panel touch up
-        Panel panel = JudgeTouchedPanel(touchPos);
+        Panel panel = JudgeTouchedPanel(viewportPoint);
         if (panel != null)
         {
             foreach (PanelTouchListener listener in panelTouchUpListeners)
             {
-                listener.OnPanelTouchUp(new PanelTouchInfo(Input.mousePosition, touchPos, touchOrigin, touchOriginViewport, Time.deltaTime, panel));
+                listener.OnPanelTouchUp(new PanelTouchInfo(worldPoint, viewportPoint, touchOrigin, touchOriginViewport, Time.deltaTime, isFirstTouch, panel));
             }
         }
-        isTouching = false;
     }
 
     private Panel JudgeTouchedPanel(Vector3 viewportPoint)
@@ -254,8 +256,8 @@ public class PanelTouchInfo : TouchInfo
 {
     public Panel touchPanel;
 
-    public PanelTouchInfo(Vector3 touchScreenPoint, Vector3 touchViewportPoint, Vector3 originScreenPoint, Vector3 originViewportPoint, float deltaTime, Panel touchPanel)
-        : base(touchScreenPoint, touchViewportPoint, originScreenPoint, originViewportPoint, deltaTime)
+    public PanelTouchInfo(Vector3 touchScreenPoint, Vector3 touchViewportPoint, Vector3 originScreenPoint, Vector3 originViewportPoint, float deltaTime, bool isFirstTouch, Panel touchPanel)
+        : base(touchScreenPoint, touchViewportPoint, originScreenPoint, originViewportPoint, deltaTime, isFirstTouch)
     {
         this.touchPanel = touchPanel;
     }
@@ -272,14 +274,16 @@ public class TouchInfo
     public Vector3 originScreenPoint;
     public Vector3 originViewportPoint;
     public float deltaTime;
+    public bool isFirstTouch;
 
-    public TouchInfo(Vector3 touchScreenPoint, Vector3 touchViewportPoint, Vector3 originScreenPoint, Vector3 originViewportPoint, float deltaTime)
+    public TouchInfo(Vector3 touchScreenPoint, Vector3 touchViewportPoint, Vector3 originScreenPoint, Vector3 originViewportPoint, float deltaTime, bool isFirstTouch)
     {
         this.touchScreenPoint = touchScreenPoint;
         this.touchViewportPoint = touchViewportPoint;
         this.originScreenPoint = originScreenPoint;
         this.originViewportPoint = originViewportPoint;
         this.deltaTime = deltaTime;
+        this.isFirstTouch = isFirstTouch;
     }
 }
 

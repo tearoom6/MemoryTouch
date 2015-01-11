@@ -319,7 +319,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         switch (StateManager.state)
         {
         case StateManager.State.PLAY:
-            JudgeCurrectPanelTouch(touchInfo.touchPanel);
+            JudgeCurrectPanelTouch(touchInfo.touchPanel, !touchInfo.isFirstTouch);
             break;
         case StateManager.State.SWEEP:
             GameObject touchEffect = Instantiate(touchEffectPrefab, touchInfo.touchPanel.panelOjcect.transform.position, Quaternion.identity) as GameObject;
@@ -653,7 +653,6 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             Destroy(twinkleEffect, 0.5f);
             break;
         }
-
     }
 
     public void OnTouchUp(TouchInfo touchInfo)
@@ -1006,7 +1005,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     /// タッチされたパネルが正解かどうか判定して、その結果によって状態遷移します。
     /// </summary>
     /// <param name="touchPanel">Touch panel.</param>
-    private void JudgeCurrectPanelTouch(Panel touchPanel)
+    /// <param name="isKeepingTouch">If set to <c>true</c> is keeping touch.</param>
+    private void JudgeCurrectPanelTouch(Panel touchPanel, bool isKeepingTouch)
     {
         if (touchPanel == currentPanel)
         {
@@ -1022,7 +1022,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         }
         currentPanel = touchPanel;
         // judge touched panel
-        int restCount = stepJudgeInfo.JudgeTouchPattern(touchPanel);
+        int restCount = stepJudgeInfo.JudgeTouchPattern(touchPanel, isKeepingTouch);
         if (restCount == 0)
         {
             // touch goal panel
@@ -1433,10 +1433,13 @@ public class StepJudgeInfo
     /// </summary>
     /// <returns>The touch pattern.</returns>
     /// <param name="touchPanel">Touch panel.</param>
-    public int JudgeTouchPattern(Panel touchPanel)
+    /// <param name="isKeepingTouch">If set to <c>true</c> is keeping touch.</param>
+    public int JudgeTouchPattern(Panel touchPanel, bool isKeepingTouch)
     {
         if (touchPanel == goalPanel)
             return 0;
+        if (!isKeepingTouch)
+            return -1;
         restCount--;
         if (restCount <= 0)
             return -1;
