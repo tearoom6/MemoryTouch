@@ -184,12 +184,13 @@ public abstract class HelpBoard : MonoBehaviour {
         // 配置
         dialogObj.transform.Translate(screenManager.WScale(0.0f, 0.35f, 0f), this.transform);
         dialogObj.transform.localScale = screenManager.WScale(0.9f, 0.15f);
-        descriptionObj1.transform.Translate(screenManager.WScale(-0.4f, 0.38f, 0f), this.transform);
+        descriptionObj1.transform.Translate(screenManager.WScale(-0.38f, 0.38f, 0f), this.transform);
         descriptionObj1.transform.localScale = screenManager.WScale(0.08f, 0.08f);
-        descriptionObj2.transform.Translate(screenManager.WScale(-0.4f, 0.32f, 0f), this.transform);
+        descriptionObj2.transform.Translate(screenManager.WScale(-0.38f, 0.32f, 0f), this.transform);
         descriptionObj2.transform.localScale = screenManager.WScale(0.06f, 0.06f);
         description = descriptionObj2.GetComponent<CustomLabel>(); // チカチカエフェクト用に取得
 
+        dialogObj.renderer.material.color = Color.green;
         descriptionObj1.GetComponent<CustomLabel>().SetLabel(string.Format(propertyManager.Get("description_tutorial"), stageInfo.stageNo))
             .SetAnchor(TextAnchor.MiddleLeft)
             .SetColor(Color.white);
