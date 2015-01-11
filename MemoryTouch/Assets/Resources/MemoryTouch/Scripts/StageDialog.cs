@@ -83,4 +83,9 @@ public class StageDialog : MonoBehaviour
         description.text = desc;
     }
 
+    public void SetBgColor(Color color)
+    {
+        dialogBg.color = color;
+    }
+
 }

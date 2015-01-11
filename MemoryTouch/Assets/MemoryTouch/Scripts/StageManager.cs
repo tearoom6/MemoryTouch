@@ -69,6 +69,9 @@ public class StageManager : MonoBehaviour
         GameObject stageDialogObj = Instantiate(stageDialogPrefab, stageDialogPrefab.transform.position, Quaternion.identity) as GameObject;
         stageDialog = stageDialogObj.GetComponent<StageDialog>();
         stageDialog.SetStageInfo(stage.level, stage.stageNo, GetClearRequirementDescription(stage));
+        if (this.mode.GetType() == typeof(QuestMode)) {
+            stageDialog.SetBgColor(Color.red);
+        }
     }
 
     /// <summary>
