@@ -95,6 +95,16 @@ public class LocalDataStore : MonoBehaviour
     }
 
     /// <summary>
+    /// 指定したキーのローカル保存が存在する場合にtrueを返します。
+    /// </summary>
+    /// <returns><c>true</c> if this instance has key the specified key; otherwise, <c>false</c>.</returns>
+    /// <param name="key">Key.</param>
+    public bool HasKey(string key)
+    {
+        return PlayerPrefs.HasKey(key);
+    }
+
+    /// <summary>
     /// 指定したキーのローカル保存を破棄します。
     /// </summary>
     /// <param name="key">Key.</param>

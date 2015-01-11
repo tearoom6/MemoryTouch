@@ -147,7 +147,6 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         autoButton.SetActive(false);
 
         userKey = LoadUserKey();
-        localDataStore.Save(GameConstants.PREF_KEY_USER_NAME, RandomUtil.RandomName());
 
         touchHandler.AddPanelTouchDownListener(this);
         touchHandler.AddPanelTouchingListener(this);
@@ -158,7 +157,14 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
 
         originalAmbientColor = RenderSettings.ambientLight;
 
-        DisplayGameInit();
+        if (localDataStore.HasKey(GameConstants.PREF_KEY_USER_NAME)) {
+            DisplayGameInit();
+        } else {
+            // 名前の設定がされていないとき(初回起動時)は、名前入力を求める
+            StateManager.EditSetting();
+            nameFieldValue = localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, "");
+            DisplaySettingBoard();
+        }
     }
 
     /* System handling */
@@ -409,7 +415,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                     DisplayRecordBoard();
                 } else if (raycastHit.collider.gameObject.name == "IconSetting") {
                     StateManager.EditSetting();
-                    nameFieldValue = localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, RandomUtil.RandomName());
+                    nameFieldValue = localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, "");
                     DisplaySettingBoard();
                 }
                 break;
@@ -766,7 +772,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         bool newRecord = localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_POINT, stageManager.mode.GetModeId()), this.point, userKey);
         if (stageManager.mode.GetType() != typeof(PracticeMode)) {
             // 新記録でなくてもサーバ送信
-            RankingRecord record = new RankingRecord(this.stageManager.mode.GetModeId(), localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, RandomUtil.RandomName()), 0, this.point);
+            RankingRecord record = new RankingRecord(this.stageManager.mode.GetModeId(), localDataStore.Load<string>(GameConstants.PREF_KEY_USER_NAME, ""), 0, this.point);
             record.reqCode = EncryptUtil.Hash(userKey) + RandomUtil.GenerateRandomStr(10);
             string recordJson = EncryptUtil.ObjectToJson(record);
             Dictionary<string, string> header = new Dictionary<string, string>();
