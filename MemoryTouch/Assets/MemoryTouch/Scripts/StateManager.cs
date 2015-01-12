@@ -31,6 +31,7 @@ public class StateManager
         SETTING,
         FAILED,
         COMPLETED,
+        QUIT_CONFIRM,
         END,
     }
 
@@ -93,6 +94,9 @@ public class StateManager
             state = State.INIT_GAME;
             break;
         case State.COMPLETED:
+            state = State.INIT_GAME;
+            break;
+        case State.QUIT_CONFIRM:
             state = State.INIT_GAME;
             break;
         }
@@ -161,6 +165,11 @@ public class StateManager
         state = State.COMPLETED;
     }
 
+    public static void QuitConfirm()
+    {
+        state = State.QUIT_CONFIRM;
+    }
+
     public static void Reset()
     {
         state = State.INIT_GAME;
@@ -208,6 +217,7 @@ public class StateManager
         case State.SETTING:
         case State.FAILED:
         case State.COMPLETED:
+        case State.QUIT_CONFIRM:
             return true;
         }
         return false;

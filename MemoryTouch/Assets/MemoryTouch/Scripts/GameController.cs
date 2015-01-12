@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     private GameObject settingBoard;
     private GameObject tutorialBoard;
     private GameObject pauseDialog;
+    private GameObject quitAppConfirmDialog;
     private GameObject initIcons;
     private GameObject infoText;
     private GameObject infoUrl;
@@ -179,7 +180,9 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             switch (StateManager.state)
             {
             case StateManager.State.INIT_GAME:
-                Application.Quit();
+                AudioManager.PlayOneShot(this.audio, "button04a");
+                DisplayConfirmQuitAppDialog();
+                StateManager.QuitConfirm();
                 break;
             case StateManager.State.SELECT_MODE:
                 AudioManager.PlayOneShot(this.audio, "button04a");
@@ -380,7 +383,12 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             CloseGameInit();
             if (Physics.Raycast(cameraRay, out raycastHit, 10)) {
                 AudioManager.PlayOneShot(this.audio, "button04a");
-                if (raycastHit.collider.gameObject.name == "IconHelp") {
+                if (raycastHit.collider.gameObject == backButton) {
+                    AudioManager.PlayOneShot(this.audio, "button04a");
+                    DisplayConfirmQuitAppDialog();
+                    StateManager.QuitConfirm();
+                    break;
+                } else if (raycastHit.collider.gameObject.name == "IconHelp") {
                     StateManager.ViewHelp();
                     slideBoardPos = 0;
                     maxBoardPos = helpBoardPrefabs.Count - 1;
@@ -616,6 +624,18 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             message.text = "";
             DisplayGameInit();
             StateManager.Next();
+            break;
+        case StateManager.State.QUIT_CONFIRM:
+            if (Physics.Raycast(cameraRay, out raycastHit, 10)) {
+                if (raycastHit.collider.gameObject.GetComponent<CustomLabel>().GetLabel() == propertyManager.Get("button_ok")) {
+                    // アプリ終了
+                    Logger.Log("Quit application.");
+                    Application.Quit();
+                } else {
+                    CloseConfirmQuitAppDialog();
+                    StateManager.Next();
+                }
+            }
             break;
         case StateManager.State.VIEW_HELP:
         case StateManager.State.VIEW_RECORD:
@@ -1007,6 +1027,38 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         this.audio.Play();
         if (pauseDialog != null)
             Destroy(pauseDialog);
+    }
+
+    /// <summary>
+    /// アプリ終了確認ダイアログを表示します。
+    /// </summary>
+    private void DisplayConfirmQuitAppDialog()
+    {
+        message.text = "";
+        quitAppConfirmDialog = new GameObject();
+        GameObject quitAppConfirmBg = Instantiate(customBgPanelPrefab, screenManager.WPos(0.5f, 0.5f, 4.5f), Quaternion.identity) as GameObject;
+        quitAppConfirmBg.transform.localScale = new Vector3(3f, 3f, 1f);
+        quitAppConfirmBg.transform.parent = quitAppConfirmDialog.transform;
+        GameObject quitAppConfirmLabel = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.6f, 4.5f), Quaternion.identity) as GameObject;
+        quitAppConfirmLabel.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+        quitAppConfirmLabel.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("description_quit_app"));
+        quitAppConfirmLabel.transform.parent = quitAppConfirmDialog.transform;
+        GameObject quitAppConfirmOk = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.5f, 4.5f), Quaternion.identity) as GameObject;
+        quitAppConfirmOk.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_ok"));
+        quitAppConfirmOk.transform.parent = quitAppConfirmDialog.transform;
+        GameObject quitAppConfirmCancel = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.4f, 4.5f), Quaternion.identity) as GameObject;
+        quitAppConfirmCancel.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_cancel"));
+        quitAppConfirmCancel.transform.parent = quitAppConfirmDialog.transform;
+    }
+
+    /// <summary>
+    /// アプリ終了確認ダイアログを閉じます。
+    /// </summary>
+    private void CloseConfirmQuitAppDialog()
+    {
+        if (quitAppConfirmDialog != null)
+            Destroy(quitAppConfirmDialog);
+        message.text = propertyManager.Get("message_game_start");
     }
 
     /// <summary>

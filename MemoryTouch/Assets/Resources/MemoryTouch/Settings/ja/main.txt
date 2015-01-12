@@ -17,6 +17,7 @@ description_congratulations=おめでとう！！！コンプリートです(^-^
 description_congratulations_first=おめでとう！！！コンプリートです(^-^)\nエクストラステージ解放!!
 description_failed=チャレンジ失敗!
 description_quit=ゲームを終了しますか?
+description_quit_app=アプリを終了しますか?
 description_tutorial=チュートリアル {0}
 # description - clear requirements
 description_stage_standard=光った順にタッチしよう!
