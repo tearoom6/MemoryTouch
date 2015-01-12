@@ -12,14 +12,17 @@ button_menu_4x4=4 X 4
 button_menu_5x5=5 X 5
 # description - special
 description_after_clear=Cleared! Touch rest panels!
+description_completed=COMPLETED
+description_congratulations=Congratulations!! Completed :)
+description_congratulations_first=Congratulations!! Completed :)\nExtra Stage Unlocked!!
 description_failed=Your challange failed!
 description_quit=Do you quit game?
+description_tutorial=Tutorial {0}
 # description - clear requirements
 description_stage_standard=Touch in order of lightning!
 description_stage_skip=Touch with {0}-skip!
 description_stage_reverse=Touch in reverse of lightning!
 description_stage_reverse_skip=Touch in reverse of lightning with {0}-skip!
-description_tutorial=Tutorial {0}
 # label
 label_menu_quest=Quest Mode
 label_menu_challenge=Challenge Mode

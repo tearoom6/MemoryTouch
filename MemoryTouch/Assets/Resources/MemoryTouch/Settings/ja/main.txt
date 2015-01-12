@@ -12,6 +12,9 @@ button_menu_4x4=4 X 4
 button_menu_5x5=5 X 5
 # description - special
 description_after_clear=クリア!パネルタッチでPtゲット!
+description_completed=コンプリート
+description_congratulations=おめでとう！！！コンプリートです(^-^)
+description_congratulations_first=おめでとう！！！コンプリートです(^-^)\nエクストラステージ解放!!
 description_failed=チャレンジ失敗!
 description_quit=ゲームを終了しますか?
 description_tutorial=チュートリアル {0}

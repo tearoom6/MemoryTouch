@@ -16,6 +16,8 @@ public class PropertyManager : MonoBehaviour
 	
     public string Get(string key, params object[] args)
     {
-        return mainProperties.Get(key, args);
+        // C#上でstringリテラルとして与えないとエスケープシーケンスが認識されない
+        // 現状では、改行のみで用が足りる
+        return mainProperties.Get(key, args).Replace("\\n", "\n");
     }
 }

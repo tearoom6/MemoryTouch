@@ -274,17 +274,13 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 autoButton.SetActive(false);
                 if (stageManager.NextStage() == null)
                 {
-                    // Game Complete Clear
-                    RecordQuestCompleted();
-                    SaveRecord();
-                    DeleteSaveStage();
-                    InitilizeGame();
-                    StateManager.Reset();
+                    StateManager.Next();
+                    StartCoroutine("CountTimeBonus", true);
                 }
                 else
                 {
                     StateManager.Next();
-                    StartCoroutine("CountTimeBonus");
+                    StartCoroutine("CountTimeBonus", false);
                 }
             }
             break;
@@ -615,6 +611,11 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 DisplayGameInit();
                 StateManager.Next();
             }
+            break;
+        case StateManager.State.COMPLETED:
+            message.text = "";
+            DisplayGameInit();
+            StateManager.Next();
             break;
         case StateManager.State.VIEW_HELP:
         case StateManager.State.VIEW_RECORD:
@@ -1148,13 +1149,19 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         GameObject customLabel1_6 = Instantiate(customLabelPrefab, screenManager.WPos(baseX + 0.8f, 0.50f), Quaternion.identity) as GameObject;
         customLabel1_6.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
         StageInfo questStage = sampleQuestMode.GetStage(GetRecordStage(sampleQuestMode.GetModeId()));
-        customLabel1_6.GetComponent<CustomLabel>().SetLabel(string.Format("{0} - {1}", questStage.level, questStage.stageNo))
-            .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
+        if (questStage != null) {
+            // コンプリートしていない場合
+            customLabel1_6.GetComponent<CustomLabel>().SetLabel(string.Format("{0} - {1}", questStage.level, questStage.stageNo))
+                .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
+        }
         customLabel1_6.transform.parent = customBg1.transform;
         if (IsQuestCompleted()) {
             // クエストモードコンプリートしたら、ユーザ名の隣に王冠表示
             GameObject crownObj = Instantiate(crownPrefab, screenManager.WPos(baseX + 0.22f, 0.70f), Quaternion.identity) as GameObject;
             crownObj.transform.parent = customBg1.transform;
+            // ステージ表示はCompleted
+            customLabel1_6.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("description_completed"))
+                .SetAnchor(TextAnchor.MiddleRight).SetColor(Color.white);
         }
 
         // challenge easy mode
@@ -1380,7 +1387,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     /// 非同期でタイムボーナスのカウントを行います。
     /// </summary>
     /// <returns>The time bonus.</returns>
-    IEnumerator CountTimeBonus()
+    /// <param name="isCompleted">If set to <c>true</c> is completed.</param>
+    IEnumerator CountTimeBonus(bool isCompleted)
     {
         yield return new WaitForSeconds(0.5f);
         float countupSeconds = 0.2f;
@@ -1405,7 +1413,22 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         Toast(propertyManager.Get("toast_time_bonus", timeBonus), 2.0f);
         Scheduler.AddSchedule(GameConstants.TIMER_KEY_WAIT_NEXT_STAGE, 2.0f, (System.Action)(() =>
             {
-                StateManager.Next();
+                if (isCompleted) {
+                    // Game Complete Clear
+                    bool isFirstComplete = !IsQuestCompleted();
+                    RecordQuestCompleted();
+                    SaveRecord();
+                    DeleteSaveStage();
+                    InitilizeGame();
+                    if (isFirstComplete) {
+                        message.text = propertyManager.Get("description_congratulations_first");
+                    } else {
+                        message.text = propertyManager.Get("description_congratulations");
+                    }
+                    StateManager.Complete();
+                } else {
+                    StateManager.Next();
+                }
             }));
     }
 

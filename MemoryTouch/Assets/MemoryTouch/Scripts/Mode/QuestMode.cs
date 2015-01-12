@@ -115,6 +115,8 @@ public class QuestMode : Mode
     /// <returns>The stage.</returns>
     /// <param name="stageIndex">Stage index.</param>
     public StageInfo GetStage(int stageIndex) {
+        if (stageIndex >= stages.Count)
+            return null;
         return this.stages[stageIndex];
     }
 

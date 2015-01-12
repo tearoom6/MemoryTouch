@@ -30,6 +30,7 @@ public class StateManager
         VIEW_RECORD,
         SETTING,
         FAILED,
+        COMPLETED,
         END,
     }
 
@@ -89,6 +90,9 @@ public class StateManager
             state = State.INIT_GAME;
             break;
         case State.FAILED:
+            state = State.INIT_GAME;
+            break;
+        case State.COMPLETED:
             state = State.INIT_GAME;
             break;
         }
@@ -152,6 +156,11 @@ public class StateManager
         state = State.FAILED;
     }
 
+    public static void Complete()
+    {
+        state = State.COMPLETED;
+    }
+
     public static void Reset()
     {
         state = State.INIT_GAME;
@@ -198,6 +207,7 @@ public class StateManager
         case State.VIEW_RECORD:
         case State.SETTING:
         case State.FAILED:
+        case State.COMPLETED:
             return true;
         }
         return false;
