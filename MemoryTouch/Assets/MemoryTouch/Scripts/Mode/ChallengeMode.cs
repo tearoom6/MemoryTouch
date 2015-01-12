@@ -39,31 +39,39 @@ public class ChallengeMode : Mode
             // Extraモード
             panelSideNum = 7;
             stepNum = RandomUtil.RandomInt(8, 9);
-            limitTime = RandomUtil.RandomFloat(4, 5);
-            bool randomReverse = (RandomUtil.RandomInt(0, 1) == 0);
-            int randomSkipN = RandomUtil.RandomInt(0, 1);
+            limitTime = RandomUtil.RandomFloat(12, 15);
+            bool randomReverse = (RandomUtil.RandomInt(0, 4) == 0);
+            int randomSkipN = RandomUtil.Draw(new Dictionary<int, int>(){ { 0,4 }, { 1,1 }, });
             return new StageInfo(0, currentStageNo + 1, panelSideNum, panelSideNum, limitTime, randomReverse, randomSkipN, CreateStepInfos(stepNum, panelSideNum * panelSideNum, 0.2f, 0.2f, new Dictionary<float, int>(){{0.2f,1},{0.3f,1}}));
         }
-        if (currentStageNo < 7) {
-            panelSideNum = RandomUtil.RandomInt(2, 3) + difficultLv;
-            stepNum = RandomUtil.RandomInt(2, 4) + difficultLv;
-            limitTime = RandomUtil.RandomFloat(stepNum, stepNum + 2);
-        } else if (currentStageNo < 14) {
-            panelSideNum = RandomUtil.RandomInt(3, 4) + difficultLv;
-            stepNum = RandomUtil.RandomInt(2, 4) + difficultLv;
-            limitTime = RandomUtil.RandomFloat(stepNum, stepNum + 1);
-        } else if (currentStageNo < 21) {
-            panelSideNum = RandomUtil.RandomInt(3, 4) + difficultLv;
-            stepNum = RandomUtil.RandomInt(3, 5) + difficultLv;
-            limitTime = RandomUtil.RandomFloat(stepNum - 1, stepNum);
+        if (currentStageNo < 10) {
+            panelSideNum = 2 + difficultLv;
+            stepNum = RandomUtil.RandomInt(2, 3) + difficultLv;
+            limitTime = stepNum + 2f;
+        } else if (currentStageNo < 20) {
+            panelSideNum = 3 + difficultLv;
+            stepNum = RandomUtil.RandomInt(2, 3) + difficultLv;
+            limitTime = stepNum + 2f;
         } else if (currentStageNo < 30) {
-            panelSideNum = RandomUtil.RandomInt(3, 4) + difficultLv;
-            stepNum = RandomUtil.RandomInt(4, 6) + difficultLv;
-            limitTime = RandomUtil.RandomFloat(stepNum - 3, stepNum - 1);
+            panelSideNum = 3 + difficultLv;
+            stepNum = RandomUtil.RandomInt(3, 4) + difficultLv;
+            limitTime = stepNum + 1f;
+        } else if (currentStageNo < 40) {
+            panelSideNum = 3 + difficultLv;
+            stepNum = RandomUtil.RandomInt(4, 5) + difficultLv;
+            limitTime = stepNum + 1f;
+        } else if (currentStageNo < 50) {
+            panelSideNum = 4 + difficultLv;
+            stepNum = RandomUtil.RandomInt(4, 5) + difficultLv;
+            limitTime = stepNum;
+        } else if (currentStageNo < 100) {
+            panelSideNum = 4 + difficultLv;
+            stepNum = RandomUtil.RandomInt(6, 7) + difficultLv;
+            limitTime = stepNum - 1f;
         } else {
-            panelSideNum = RandomUtil.RandomInt(3, 4) + difficultLv;
-            stepNum = RandomUtil.RandomInt(6, 10) + difficultLv;
-            limitTime = RandomUtil.RandomFloat(stepNum - 4, stepNum - 2);
+            panelSideNum = 4 + difficultLv;
+            stepNum = RandomUtil.RandomInt(8, 10) + difficultLv;
+            limitTime = stepNum - 1f;
         }
         int panelNum = panelSideNum * panelSideNum;
         return new StageInfo(0, currentStageNo + 1, panelSideNum, panelSideNum, limitTime, reverse, skipN, CreateStepInfos(stepNum, panelNum, 0.1f, 0.2f, new Dictionary<float, int>(){{0.2f,2},{0.3f,1},{0.4f,1},{0.5f,1},}));

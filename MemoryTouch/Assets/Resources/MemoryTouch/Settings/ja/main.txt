@@ -25,7 +25,7 @@ description_stage_skip=光った順に{0}つ飛ばしでタッチしよう!
 description_stage_reverse=光った順の逆順でタッチしよう!
 description_stage_reverse_skip=逆順の{0}つ飛ばしでタッチしよう!
 # label
-label_menu_quest=クエストモード
+label_menu_quest=クエストモード\n(全15ステージ)
 label_menu_challenge=チャレンジモード
 label_menu_practice=練習モード
 label_input_name=名前を入力してね

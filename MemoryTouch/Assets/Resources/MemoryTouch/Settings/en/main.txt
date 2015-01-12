@@ -25,7 +25,7 @@ description_stage_skip=Touch with {0}-skip!
 description_stage_reverse=Touch in reverse of lightning!
 description_stage_reverse_skip=Touch in reverse of lightning with {0}-skip!
 # label
-label_menu_quest=Quest Mode
+label_menu_quest=Quest Mode\n(Complete in 15 stages)
 label_menu_challenge=Challenge Mode
 label_menu_practice=Practice Mode
 label_input_name=Input your name.

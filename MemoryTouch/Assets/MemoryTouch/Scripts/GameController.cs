@@ -425,7 +425,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 break;
             }
             selectMenu = new GameObject();
-            GameObject customLabel1 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.8f), Quaternion.identity) as GameObject;
+            GameObject customLabel1 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.83f), Quaternion.identity) as GameObject;
             customLabel1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_quest"));
             customLabel1.transform.parent = selectMenu.transform;
             GameObject questStart = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.7f), Quaternion.identity) as GameObject;
