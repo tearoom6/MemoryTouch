@@ -853,7 +853,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     {
         if (stageManager.mode.GetType() != typeof(QuestMode))
             return;
-        localDataStore.SaveWithPWD(string.Format(GameConstants.PREF_KEY_STAGE_CONTINUE, stageManager.mode.GetModeId()), this.stageManager.mode.GetCurrentStageIndex(), userKey);
+        localDataStore.SaveMaxIntWithPWD(string.Format(GameConstants.PREF_KEY_STAGE_CONTINUE, stageManager.mode.GetModeId()), this.stageManager.mode.GetCurrentStageIndex(), userKey);
     }
 
     /// <summary>
