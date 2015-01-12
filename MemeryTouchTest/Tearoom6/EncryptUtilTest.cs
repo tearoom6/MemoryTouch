@@ -68,14 +68,14 @@ namespace MemeryTouchTest
         [Test()]
         public void TestEncryptString()
         {
-            string encrypted = EncryptUtil.EncryptString("10", "fgeEe4gN");
+            string encrypted = EncryptUtil.Encrypt("10", "fgeEe4gN");
             System.Console.Out.WriteLine(encrypted);
         }
 
         [Test()]
         public void TestDecryptString()
         {
-            string decrypted = EncryptUtil.DecryptString("0snlHO/3AvD8t7RBKR2dtA==", "fgeEe4gN");
+            string decrypted = EncryptUtil.Decrypt("0snlHO/3AvD8t7RBKR2dtA==", "fgeEe4gN");
             System.Console.Out.WriteLine(decrypted);
         }
     }

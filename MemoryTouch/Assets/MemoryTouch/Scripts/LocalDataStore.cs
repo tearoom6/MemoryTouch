@@ -23,11 +23,9 @@ public class LocalDataStore : MonoBehaviour
     /// <returns>保存した場合にtrueを返す</returns>
     public bool SaveMaxInt(string key, int value)
     {
-        int? loadData = Load<int?>(key, null);
-        if (loadData != null) {
-            if (value <= loadData)
-                return false;
-        }
+        int loadData = Load<int>(key, int.MinValue);
+        if (value <= loadData)
+            return false;
         Save(key, value);
         return true;
     }
@@ -69,11 +67,9 @@ public class LocalDataStore : MonoBehaviour
     /// <returns>保存した場合にtrueを返す</returns>
     public bool SaveMaxIntWithPWD(string key, int value, string passwd)
     {
-        int? loadData = LoadWithPWD<int?>(key, passwd, null);
-        if (loadData != null) {
-            if (value <= loadData)
-                return false;
-        }
+        int loadData = LoadWithPWD<int>(key, passwd, int.MinValue);
+        if (value <= loadData)
+            return false;
         SaveWithPWD(key, value, passwd);
         return true;
     }

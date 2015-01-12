@@ -1,11 +1,15 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{247D2127-2B45-0964-4D3E-059E55CFCBE4}") = "MemoryTouch", "Assembly-CSharp-firstpass.csproj", "{A4F19847-4444-6280-2306-D144256833D1}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{A4F19847-4444-6280-2306-D144256833D1}"
 EndProject
-Project("{247D2127-2B45-0964-4D3E-059E55CFCBE4}") = "MemoryTouch", "Assembly-CSharp.csproj", "{F00FF493-F19F-A517-BB0D-EB06EC855355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{F00FF493-F19F-A517-BB0D-EB06EC855355}"
 EndProject
-Project("{247D2127-2B45-0964-4D3E-059E55CFCBE4}") = "MemoryTouch", "Assembly-CSharp-Editor.csproj", "{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemeryTouchTest", "..\MemeryTouchTest\MemeryTouchTest.csproj", "{4222A072-1B8B-460B-8914-883BB3ACDE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemeryTouchTest", "..\MemeryTouchTest\MemeryTouchTest.csproj", "{4222A072-1B8B-460B-8914-883BB3ACDE0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4222A072-1B8B-460B-8914-883BB3ACDE0E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4F19847-4444-6280-2306-D144256833D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4F19847-4444-6280-2306-D144256833D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4F19847-4444-6280-2306-D144256833D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -21,15 +37,8 @@ Global
 		{F00FF493-F19F-A517-BB0D-EB06EC855355}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F00FF493-F19F-A517-BB0D-EB06EC855355}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F00FF493-F19F-A517-BB0D-EB06EC855355}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-				GlobalSection(MonoDevelopProperties) = preSolution
+	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -67,5 +76,7 @@ Global
 		$6.inheritsSet = null
 		$6.scope = application/config+xml
 	EndGlobalSection
-
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 EndGlobal
