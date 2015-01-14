@@ -137,14 +137,14 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         Logger.Info(backButtonPrefab.name + " prefab is loaded.", this);
         Vector3 backButtonPoint = screenManager.WPos(0.06f, 0.96f);
         backButton = Instantiate(backButtonPrefab, backButtonPoint, Quaternion.identity) as GameObject;
-        backButton.transform.localScale = screenManager.WScale(0.08f, 0.08f * screenManager.WIDTH_HEIGHT_RATIO);
+        backButton.transform.localScale = screenManager.WScale(0.1f, 0.1f * screenManager.WIDTH_HEIGHT_RATIO);
         backButton.SetActive(false);
 
         GameObject autoButtonPrefab = Resources.Load(GameConstants.RESOURCE_PREFAB_AUTO_BUTTON) as GameObject;
         Logger.Info(autoButtonPrefab.name + " prefab is loaded.", this);
         Vector3 autoButtonPoint = screenManager.WPos(0.15f, 0.96f);
         autoButton = Instantiate(autoButtonPrefab, autoButtonPoint, Quaternion.identity) as GameObject;
-        autoButton.transform.localScale = screenManager.WScale(0.08f, 0.08f * screenManager.WIDTH_HEIGHT_RATIO);
+        autoButton.transform.localScale = screenManager.WScale(0.1f, 0.1f * screenManager.WIDTH_HEIGHT_RATIO);
         autoButton.SetActive(false);
 
         userKey = LoadUserKey();
