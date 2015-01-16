@@ -426,6 +426,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             }
             selectMenu = new GameObject();
             GameObject customLabel1 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.83f), Quaternion.identity) as GameObject;
+            customLabel1.transform.localScale = new Vector3(0.3f, 0.3f);
             customLabel1.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_quest"));
             customLabel1.transform.parent = selectMenu.transform;
             GameObject questStart = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.7f), Quaternion.identity) as GameObject;
@@ -437,6 +438,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 questContinueStart.transform.parent = selectMenu.transform;
             }
             GameObject customLabel2 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.5f), Quaternion.identity) as GameObject;
+            customLabel2.transform.localScale = new Vector3(0.3f, 0.3f);
             customLabel2.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_challenge"));
             customLabel2.transform.parent = selectMenu.transform;
             GameObject challengeEasy = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.4f), Quaternion.identity) as GameObject;
