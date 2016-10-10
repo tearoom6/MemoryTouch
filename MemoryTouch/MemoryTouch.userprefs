@@ -1,4 +1,4 @@
-﻿<Properties>
+<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MemoryTouch/Scripts/GameController.cs">
     <Files>

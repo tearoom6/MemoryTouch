@@ -180,12 +180,12 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             switch (StateManager.state)
             {
             case StateManager.State.INIT_GAME:
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 DisplayConfirmQuitAppDialog();
                 StateManager.QuitConfirm();
                 break;
             case StateManager.State.SELECT_MODE:
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 Destroy(selectMenu);
                 DisplayGameInit();
                 StateManager.Reset();
@@ -197,20 +197,20 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 break;
             case StateManager.State.VIEW_HELP:
             case StateManager.State.VIEW_RECORD:
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 CloseSlideBoards();
                 DisplayGameInit();
                 StateManager.Next();
                 break;
             case StateManager.State.VIEW_INFO:
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 Destroy(infoText);
                 Destroy(infoUrl);
                 DisplayGameInit();
                 StateManager.Next();
                 break;
             case StateManager.State.SETTING:
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 CloseSettingBoard();
                 DisplayGameInit();
                 StateManager.Next();
@@ -257,7 +257,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             {
                 InitSeconds();
                 stageManager.GetStepGoalPanel(currentStepIndex).Flick(new FlickInfo(Color.red, 10f, 5f));
-                AudioManager.PlayOneShot(this.audio, "baku013", 0.5f);
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "baku013", 0.5f);
                 stageManager.SetStageDialogDescription(propertyManager.Get("description_failed"));
                 Toast(propertyManager.Get("toast_time_up"));
                 Logger.Info("Stage Time up!");
@@ -356,7 +356,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             // 一時停止中
             if (pauseDialog != null)
             {
-                if (pauseDialog.transform.FindChild("OkButton").guiTexture.HitTest(touchInfo.touchScreenPoint))
+                if (pauseDialog.transform.FindChild("OkButton").GetComponent<GUITexture>().HitTest(touchInfo.touchScreenPoint))
                 {
                     SaveRecord();
                     SaveStage();
@@ -367,7 +367,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                     StateManager.Reset();
                     StateManager.QuitPausing();
                 }
-                else if (pauseDialog.transform.FindChild("CancelButton").guiTexture.HitTest(touchInfo.touchScreenPoint))
+                else if (pauseDialog.transform.FindChild("CancelButton").GetComponent<GUITexture>().HitTest(touchInfo.touchScreenPoint))
                 {
                     ClosePauseDialog();
                     StateManager.QuitPausing();
@@ -382,9 +382,9 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             message.text = "";
             CloseGameInit();
             if (Physics.Raycast(cameraRay, out raycastHit, 10)) {
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 if (raycastHit.collider.gameObject == backButton) {
-                    AudioManager.PlayOneShot(this.audio, "button04a");
+                    AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                     DisplayConfirmQuitAppDialog();
                     StateManager.QuitConfirm();
                     break;
@@ -396,18 +396,18 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 } else if (raycastHit.collider.gameObject.name == "IconInfo") {
                     StateManager.ViewInfo();
                     infoText = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.65f, 3f), Quaternion.identity) as GameObject;
-                    infoText.guiText.text = propertyManager.Get("message_app_name");
+                    infoText.GetComponent<GUIText>().text = propertyManager.Get("message_app_name");
                     GameObject infoText2 = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.6f, 3f), Quaternion.identity) as GameObject;
-                    infoText2.guiText.text = string.Format(propertyManager.Get("message_app_version"), GameConstants.VERSION);
+                    infoText2.GetComponent<GUIText>().text = string.Format(propertyManager.Get("message_app_version"), GameConstants.VERSION);
                     infoText2.transform.parent = infoText.transform;
                     GameObject infoText3 = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.5f, 3f), Quaternion.identity) as GameObject;
-                    infoText3.guiText.text = propertyManager.Get("message_credit1");
+                    infoText3.GetComponent<GUIText>().text = propertyManager.Get("message_credit1");
                     infoText3.transform.parent = infoText.transform;
                     GameObject infoText4 = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.45f, 3f), Quaternion.identity) as GameObject;
-                    infoText4.guiText.text = propertyManager.Get("message_credit2");
+                    infoText4.GetComponent<GUIText>().text = propertyManager.Get("message_credit2");
                     infoText4.transform.parent = infoText.transform;
                     infoUrl = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.35f, 3f), Quaternion.identity) as GameObject;
-                    infoUrl.guiText.text = propertyManager.Get("message_author_url");
+                    infoUrl.GetComponent<GUIText>().text = propertyManager.Get("message_author_url");
                     infoUrl.transform.parent = infoText.transform;
                 } else if (raycastHit.collider.gameObject.name == "IconRanking") {
                     StateManager.ViewRecord();
@@ -451,7 +451,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 GameObject challengeExtra = Instantiate(customButtonPrefab, screenManager.WPos(0.5f, 0.2f), Quaternion.identity) as GameObject;
                 challengeExtra.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_extra"));
                 challengeExtra.transform.parent = selectMenu.transform;
-                challengeExtra.renderer.material.color = Color.white;
+                challengeExtra.GetComponent<Renderer>().material.color = Color.white;
             }
 //            GameObject customLabel3 = Instantiate(customLabelPrefab, screenManager.WPos(0.5f, 0.41f), Quaternion.identity) as GameObject;
 //            customLabel3.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("label_menu_practice"));
@@ -466,13 +466,13 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
 //            practice5x5.GetComponent<CustomLabel>().SetLabel(propertyManager.Get("button_menu_5x5"));
 //            practice5x5.transform.parent = selectMenu.transform;
             backButton.SetActive(true);
-            AudioManager.PlayOneShot(this.audio, "button04a");
+            AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
             StateManager.Next();
             break;
         case StateManager.State.SELECT_MODE:
             if (Physics.Raycast(cameraRay, out raycastHit, 10))
             {
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 if (raycastHit.collider.gameObject == backButton) {
                     Destroy(selectMenu);
                     DisplayGameInit();
@@ -545,7 +545,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             break;
         case StateManager.State.SWEEP:
             if (Physics.Raycast(cameraRay, out raycastHit, 10)) {
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 if (raycastHit.collider.gameObject == autoButton) {
                     StateManager.AutoSweep();
                     autoButton.SetActive(false);
@@ -579,11 +579,11 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             StateManager.Next();
             break;
         case StateManager.State.VIEW_INFO:
-            AudioManager.PlayOneShot(this.audio, "button04a");
-            if (infoUrl.guiText.GetScreenRect().Contains(touchInfo.touchScreenPoint))
+            AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
+            if (infoUrl.GetComponent<GUIText>().GetScreenRect().Contains(touchInfo.touchScreenPoint))
             {
-                Application.OpenURL(infoUrl.guiText.text);
-                Logger.Log(this, infoUrl.guiText.text);
+                Application.OpenURL(infoUrl.GetComponent<GUIText>().text);
+                Logger.Log(this, infoUrl.GetComponent<GUIText>().text);
                 break;
             }
             Destroy(infoText);
@@ -596,7 +596,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             CloseGameInit();
             if (Physics.Raycast(cameraRay, out raycastHit, 10))
             {
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 if (raycastHit.collider.gameObject.name == "OkButton")
                 {
                     localDataStore.Save(GameConstants.PREF_KEY_USER_NAME, nameFieldValue);
@@ -708,7 +708,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                 break;
             float distanceX = touchInfo.touchViewportPoint.x - touchInfo.originViewportPoint.x;
             if (secondsOnTouchDown < 2.0f && Mathf.Abs(distanceX) < 0.05f) {
-                AudioManager.PlayOneShot(this.audio, "button04a");
+                AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 CloseSlideBoards();
                 DisplayGameInit();
                 StateManager.Next();
@@ -782,7 +782,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     private void AddPoint(int addPoint)
     {
         this.point += addPoint;
-        AudioManager.PlayOneShot(this.audio, "Coin_Pick_Up_03");
+        AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "Coin_Pick_Up_03");
     }
 
     /// <summary>
@@ -1017,8 +1017,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         dialog.SetLabels(propertyManager.Get("description_quit"),
             propertyManager.Get("button_ok"),
             propertyManager.Get("button_cancel"));
-        AudioManager.PlayOneShot(pauseDialog.audio, "button25");
-        this.audio.Pause();
+        AudioManager.PlayOneShot(pauseDialog.GetComponent<AudioSource>(), "button25");
+        this.GetComponent<AudioSource>().Pause();
     }
 
     /// <summary>
@@ -1026,7 +1026,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     /// </summary>
     private void ClosePauseDialog()
     {
-        this.audio.Play();
+        this.GetComponent<AudioSource>().Play();
         if (pauseDialog != null)
             Destroy(pauseDialog);
     }
@@ -1089,7 +1089,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         {
             // touch goal panel
             touchPanel.Flush(stageManager.GetCurrentStep(currentStepIndex));
-            AudioManager.PlayOneShot(this.audio, "button01b");
+            AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button01b");
             GameObject touchEffect = Instantiate(touchEffectPrefab, touchPanel.panelOjcect.transform.position, Quaternion.identity) as GameObject;
             Destroy(touchEffect, 1.0f);
             Logger.Info("[Panel Touch] GOAL!");
@@ -1119,7 +1119,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         {
             // touch on-route panel
             touchPanel.Flush(new FlushInfo(Color.yellow));
-            AudioManager.PlayOneShot(this.audio, "button04a");
+            AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
             Logger.Info("[Panel Touch] OK!");
             return;
         }
@@ -1128,7 +1128,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             // touch wrong panel
 //            touchPanel.Flick(new FlickInfo(Color.red, 10f, 5f));
             stageManager.GetStepGoalPanel(currentStepIndex).Flick(new FlickInfo(Color.yellow, 10f, 5f));
-            AudioManager.PlayOneShot(this.audio, "baku013", 0.5f);
+            AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "baku013", 0.5f);
             stageManager.SetStageDialogDescription(propertyManager.Get("description_failed"));
             Toast(propertyManager.Get("toast_touch_wrong_panel"));
             Logger.Info("[Panel Touch] NG!");

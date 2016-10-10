@@ -195,7 +195,7 @@ public class StageManager : MonoBehaviour
             StepInfo cloneFlushInfo = stepInfo.Clone();
             Scheduler.AddSchedule(GameConstants.TIMER_KEY_PREFIX_PANEL_DEMO + i++.ToString(), stepInfo.startTime, (System.Action)(() =>
                 {
-                    AudioManager.PlayOneShot(this.audio, "button01b");
+                    AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button01b");
                     this.panels[cloneFlushInfo.panelIndex].Flush(cloneFlushInfo);
                 }));
         }

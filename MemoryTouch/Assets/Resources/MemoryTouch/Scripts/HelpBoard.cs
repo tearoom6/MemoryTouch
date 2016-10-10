@@ -190,7 +190,7 @@ public abstract class HelpBoard : MonoBehaviour {
         descriptionObj2.transform.localScale = screenManager.WScale(0.06f, 0.06f);
         description = descriptionObj2.GetComponent<CustomLabel>(); // チカチカエフェクト用に取得
 
-        dialogObj.renderer.material.color = Color.green;
+        dialogObj.GetComponent<Renderer>().material.color = Color.green;
         descriptionObj1.GetComponent<CustomLabel>().SetLabel(string.Format(propertyManager.Get("description_tutorial"), stageInfo.stageNo))
             .SetAnchor(TextAnchor.MiddleLeft)
             .SetColor(Color.white);

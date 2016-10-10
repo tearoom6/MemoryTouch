@@ -11,12 +11,12 @@ public class FlickerEffect : MonoBehaviour
 
     void Start()
     {
-        originalColor = guiText.color;
+        originalColor = GetComponent<GUIText>().color;
     }
 
     void Update()
     {
         float level = Mathf.Abs(Mathf.Sin(Time.time * 3));
-        guiText.color = originalColor * level;
+        GetComponent<GUIText>().color = originalColor * level;
     }
 }

@@ -19,7 +19,7 @@ public class PanelColor : MonoBehaviour
     {
         timerKeyPanelColor = GameConstants.TIMER_KEY_PREFIX_PANEL_COLOR + gameObject.GetInstanceID().ToString();
         timerKeyPanelFlick = GameConstants.TIMER_KEY_PREFIX_PANEL_FLICK + gameObject.GetInstanceID().ToString();
-        originalColor = renderer.material.GetColor(COLOR_PROPERTY_TYPE);
+        originalColor = GetComponent<Renderer>().material.GetColor(COLOR_PROPERTY_TYPE);
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class PanelColor : MonoBehaviour
         if (Timer.IsAvailable(timerKeyPanelFlick))
         {
             float level = Mathf.Abs(Mathf.Sin(Time.time * flickPace));
-            renderer.material.SetColor(COLOR_PROPERTY_TYPE, originalColor + (flickColor - originalColor) * level);
+            GetComponent<Renderer>().material.SetColor(COLOR_PROPERTY_TYPE, originalColor + (flickColor - originalColor) * level);
         }
         if (Timer.IsTimeout(timerKeyPanelColor))
         {
@@ -41,7 +41,7 @@ public class PanelColor : MonoBehaviour
 
     public void Flush(FlushInfo flushInfo)
     {
-        renderer.material.SetColor(COLOR_PROPERTY_TYPE, flushInfo.flushColor);
+        GetComponent<Renderer>().material.SetColor(COLOR_PROPERTY_TYPE, flushInfo.flushColor);
         Timer.SetTimer(timerKeyPanelColor, flushInfo.flushTime);
     }
 
@@ -55,12 +55,12 @@ public class PanelColor : MonoBehaviour
     public void ChangeOriginalColor(Color afterColor)
     {
         this.originalColor = afterColor;
-        renderer.material.SetColor(COLOR_PROPERTY_TYPE, afterColor);
+        GetComponent<Renderer>().material.SetColor(COLOR_PROPERTY_TYPE, afterColor);
     }
 
     public void  OriginalColor()
     {
-        renderer.material.SetColor(COLOR_PROPERTY_TYPE, this.originalColor);
+        GetComponent<Renderer>().material.SetColor(COLOR_PROPERTY_TYPE, this.originalColor);
     }
 
 }
