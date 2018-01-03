@@ -356,7 +356,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             // 一時停止中
             if (pauseDialog != null)
             {
-                if (pauseDialog.transform.FindChild("OkButton").GetComponent<GUITexture>().HitTest(touchInfo.touchScreenPoint))
+                if (pauseDialog.transform.Find("OkButton").GetComponent<GUITexture>().HitTest(touchInfo.touchScreenPoint))
                 {
                     SaveRecord();
                     SaveStage();
@@ -367,7 +367,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                     StateManager.Reset();
                     StateManager.QuitPausing();
                 }
-                else if (pauseDialog.transform.FindChild("CancelButton").GetComponent<GUITexture>().HitTest(touchInfo.touchScreenPoint))
+                else if (pauseDialog.transform.Find("CancelButton").GetComponent<GUITexture>().HitTest(touchInfo.touchScreenPoint))
                 {
                     ClosePauseDialog();
                     StateManager.QuitPausing();
