@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryTouch", "Assembly-CSharp.csproj", "{F00FF493-F19F-A517-BB0D-EB06EC855355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{F00FF493-F19F-A517-BB0D-EB06EC855355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryTouch", "Assembly-CSharp-firstpass.csproj", "{A4F19847-4444-6280-2306-D144256833D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{A4F19847-4444-6280-2306-D144256833D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryTouch", "Assembly-CSharp-Editor.csproj", "{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{3D49CB68-1FFB-35ED-9D73-33D39F7CA87B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
