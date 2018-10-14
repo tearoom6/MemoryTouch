@@ -22,6 +22,7 @@
 /*.iOS/
 /*.Android/
 dist/
+_site/
 
 
 # .gitignore for Node.js
