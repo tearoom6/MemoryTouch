@@ -1,18 +1,19 @@
 import React from 'react'
+import i18next from 'i18next'
 
-import Container from 'react-bulma-components/lib/components/container';
-import Content from 'react-bulma-components/lib/components/content';
-import Footer from 'react-bulma-components/lib/components/footer';
-import Heading from 'react-bulma-components/lib/components/heading';
-import Section from 'react-bulma-components/lib/components/section';
-import Tile from 'react-bulma-components/lib/components/tile';
+import Container from 'react-bulma-components/lib/components/container'
+import Content from 'react-bulma-components/lib/components/content'
+import Footer from 'react-bulma-components/lib/components/footer'
+import Heading from 'react-bulma-components/lib/components/heading'
+import Section from 'react-bulma-components/lib/components/section'
+import Tile from 'react-bulma-components/lib/components/tile'
 
 const Layout = () => (
   <div>
 	  <Section>
 
 	    <Container>
-	      <Heading>Privacy Policy</Heading>
+	      <Heading>{ i18next.t('privacy.title') }</Heading>
 
 	      <Tile notification color="primary">
 
