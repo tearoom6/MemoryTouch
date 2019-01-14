@@ -18,12 +18,13 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "i18next": "^12.0.0",
-    "i18next-browser-languagedetector": "^2.2.3",
+    "i18next": "^13.1.2",
+    "i18next-browser-languagedetector": "^2.2.4",
     "i18next-xhr-backend": "^1.5.1",
     "react": "^16.5.2",
     "react-bulma-components": "^2.2.0",
     "react-dom": "^16.5.2",
+    "react-i18next": "^9.0.2",
     "webfontloader": "^1.6.28"
   }
 }

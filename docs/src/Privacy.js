@@ -1,104 +1,104 @@
 import React from 'react'
-import i18next from 'i18next'
+import { withNamespaces } from 'react-i18next'
 
 import Container from 'react-bulma-components/lib/components/container'
 import Heading from 'react-bulma-components/lib/components/heading'
 
 import Layout from './Layout'
 
-const Privacy = () => (
-  <Layout title={ i18next.t('privacy.title') }>
+const Privacy = ({ t }) => (
+  <Layout title={ t('privacy.title') }>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-01') }
+        { t('privacy.caption-01') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-01') }
+        { t('privacy.content-01') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-02') }
+        { t('privacy.caption-02') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-02') }
+        { t('privacy.content-02') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-03') }
+        { t('privacy.caption-03') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-03') }
+        { t('privacy.content-03') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-04') }
+        { t('privacy.caption-04') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-04') }
+        { t('privacy.content-04') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-05') }
+        { t('privacy.caption-05') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-05') }
+        { t('privacy.content-05') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-06') }
+        { t('privacy.caption-06') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-06') }
+        { t('privacy.content-06') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-07') }
+        { t('privacy.caption-07') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-07') }
+        { t('privacy.content-07') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-08') }
+        { t('privacy.caption-08') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-08') }
+        { t('privacy.content-08') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-09') }
+        { t('privacy.caption-09') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-09') }
+        { t('privacy.content-09') }
       </div>
     </Container>
 
     <Container>
        <Heading>
-        { i18next.t('privacy.caption-10') }
+        { t('privacy.caption-10') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
-        { i18next.t('privacy.content-10') }
+        { t('privacy.content-10') }
       </div>
     </Container>
   </Layout>
 )
 
-export default Privacy
+export default withNamespaces()(Privacy)
