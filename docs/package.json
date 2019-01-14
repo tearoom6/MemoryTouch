@@ -1,0 +1,30 @@
+{
+  "name": "MemoryTouch-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tearoom6/MemoryTouch",
+  "author": "tearoom6",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "i18next": "^13.1.2",
+    "i18next-browser-languagedetector": "^2.2.4",
+    "i18next-xhr-backend": "^1.5.1",
+    "react": "^16.5.2",
+    "react-bulma-components": "^2.2.0",
+    "react-dom": "^16.5.2",
+    "react-i18next": "^9.0.2",
+    "webfontloader": "^1.6.28"
+  }
+}
