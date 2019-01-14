@@ -22,7 +22,7 @@ i18next
   .init({
     fallbackLng: 'en',
     backend: {
-      loadPath: '/locales/{{lng}}.json',
+      loadPath: './locales/{{lng}}.json',
     },
   }, function(err, t) {
     // i18n initialized.
