@@ -23,6 +23,7 @@
     "i18next-xhr-backend": "^1.5.1",
     "react": "^16.5.2",
     "react-bulma-components": "^2.2.0",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "webfontloader": "^1.6.28"
   }
 }
