@@ -6,6 +6,7 @@ import LngDetector from 'i18next-browser-languagedetector'
 import { reactI18nextModule } from 'react-i18next'
 import WebFont from 'webfontloader'
 
+import License from './License'
 import Privacy from './Privacy'
 
 WebFont.load({
@@ -25,8 +26,14 @@ i18next
     },
   }, function(err, t) {
     // i18n initialized.
+    const urlParams = new URLSearchParams(location.search)
+    const pageParam = urlParams.get('page');
+    let page = <Privacy/>
+    if (pageParam == 'license') {
+      page = <License/>
+    }
     ReactDOM.render(
-      <Privacy/>,
+      page,
       document.getElementById('root')
     )
   })

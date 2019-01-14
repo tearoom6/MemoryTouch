@@ -10,7 +10,7 @@ const Privacy = ({ t }) => (
   <Layout title={ t('privacy.title') }>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-01') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -19,7 +19,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-02') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -28,7 +28,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-03') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -37,7 +37,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-04') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -46,7 +46,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-05') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -55,7 +55,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-06') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -64,7 +64,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-07') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -73,7 +73,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-08') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -82,7 +82,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-09') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>
@@ -91,7 +91,7 @@ const Privacy = ({ t }) => (
     </Container>
 
     <Container>
-       <Heading>
+      <Heading>
         { t('privacy.caption-10') }
       </Heading>
       <div style={{ 'white-space': 'pre-wrap' }}>

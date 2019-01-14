@@ -1,12 +1,14 @@
 import React from 'react'
 
 import i18next from 'i18next'
+import { withNamespaces } from 'react-i18next'
 
 import Container from 'react-bulma-components/lib/components/container'
 import Content from 'react-bulma-components/lib/components/content'
 import Dropdown from 'react-bulma-components/lib/components/dropdown'
 import Footer from 'react-bulma-components/lib/components/footer'
 import Heading from 'react-bulma-components/lib/components/heading'
+import Navbar from 'react-bulma-components/lib/components/navbar'
 import Section from 'react-bulma-components/lib/components/section'
 
 const Layout = (props) => {
@@ -15,6 +17,21 @@ const Layout = (props) => {
   }
   return (
     <div>
+      <Navbar>
+        <Navbar.Brand>
+          <Navbar.Item>
+            <img src="img/icon.png" height="28" />
+            <span>Breakthrough</span>
+          </Navbar.Item>
+        </Navbar.Brand>
+        <Navbar.Menu active={true}>
+          <Navbar.Container>
+            <Navbar.Item href="/?page=privacy">{ i18next.t('privacy.title') }</Navbar.Item>
+            <Navbar.Item href="/?page=license">{ i18next.t('license.title') }</Navbar.Item>
+          </Navbar.Container>
+        </Navbar.Menu>
+      </Navbar>
+
       <Section>
 
         <Container>
@@ -42,4 +59,4 @@ const Layout = (props) => {
   )
 }
 
-export default Layout
+export default withNamespaces()(Layout)
