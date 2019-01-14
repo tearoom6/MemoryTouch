@@ -4,7 +4,7 @@ import i18next from 'i18next'
 import Backend from 'i18next-xhr-backend'
 import LngDetector from 'i18next-browser-languagedetector'
 
-import Layout from './Layout'
+import Privacy from './Privacy'
 
 i18next
   .use(LngDetector)
@@ -17,7 +17,7 @@ i18next
   }, function(err, t) {
     // i18n initialized.
     ReactDOM.render(
-      <Layout/>,
+      <Privacy/>,
       document.getElementById('root')
     )
   })
