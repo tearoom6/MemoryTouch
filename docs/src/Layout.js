@@ -26,8 +26,8 @@ const Layout = (props) => {
         </Navbar.Brand>
         <Navbar.Menu active={true}>
           <Navbar.Container>
-            <Navbar.Item href="/?page=privacy">{ i18next.t('privacy.title') }</Navbar.Item>
-            <Navbar.Item href="/?page=license">{ i18next.t('license.title') }</Navbar.Item>
+            <Navbar.Item href="./?page=privacy">{ i18next.t('privacy.title') }</Navbar.Item>
+            <Navbar.Item href="./?page=license">{ i18next.t('license.title') }</Navbar.Item>
           </Navbar.Container>
         </Navbar.Menu>
       </Navbar>
