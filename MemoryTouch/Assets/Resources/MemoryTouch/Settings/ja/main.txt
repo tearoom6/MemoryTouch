@@ -40,9 +40,12 @@ label_extra=エクストラ
 # message
 message_app_name=BREAKTHROUGH
 message_app_version=Version {0}
-message_credit1=(c)tearoom6 2015
+message_credit1=(c)tearoom6 2015-2019
 message_credit2=All Rights Reserved.
-message_author_url=http://tearoom6-jp.appspot.com
+message_author_text=開発者について
+message_privacy_text=プライバシーポリシー
+message_author_url=https://tearoom6.github.io/
+message_privacy_url=https://tearoom6.github.io/MemoryTouch/
 message_game_start=GAME START
 # toast message
 toast_clear_bonus=クリアボーナス {0} Pt獲得!
