@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public class GameConstants
 {
-    public static string VERSION = "1.1.1";
+    public static string VERSION = "1.1.2";
 
     public static float Z_DEPTH_BASE = 5f;
 

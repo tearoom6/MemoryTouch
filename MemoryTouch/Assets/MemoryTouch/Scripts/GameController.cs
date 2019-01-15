@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -34,7 +34,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
     private GameObject quitAppConfirmDialog;
     private GameObject initIcons;
     private GameObject infoText;
-    private GameObject infoUrl;
+    private GameObject infoAuthorUrl;
+    private GameObject infoPrivacyUrl;
     private GameObject selectMenu;
     private GameObject backButton;
     private GameObject autoButton;
@@ -205,7 +206,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             case StateManager.State.VIEW_INFO:
                 AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
                 Destroy(infoText);
-                Destroy(infoUrl);
+                Destroy(infoAuthorUrl);
+                Destroy(infoPrivacyUrl);
                 DisplayGameInit();
                 StateManager.Next();
                 break;
@@ -406,9 +408,12 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
                     GameObject infoText4 = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.45f, 3f), Quaternion.identity) as GameObject;
                     infoText4.GetComponent<GUIText>().text = propertyManager.Get("message_credit2");
                     infoText4.transform.parent = infoText.transform;
-                    infoUrl = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.35f, 3f), Quaternion.identity) as GameObject;
-                    infoUrl.GetComponent<GUIText>().text = propertyManager.Get("message_author_url");
-                    infoUrl.transform.parent = infoText.transform;
+                    infoAuthorUrl = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.35f, 3f), Quaternion.identity) as GameObject;
+                    infoAuthorUrl.GetComponent<GUIText>().text = propertyManager.Get("message_author_text");
+                    infoAuthorUrl.transform.parent = infoText.transform;
+                    infoPrivacyUrl = Instantiate(simpleTextPrefab, new Vector3(0.5f, 0.30f, 3f), Quaternion.identity) as GameObject;
+                    infoPrivacyUrl.GetComponent<GUIText>().text = propertyManager.Get("message_privacy_text");
+                    infoPrivacyUrl.transform.parent = infoText.transform;
                 } else if (raycastHit.collider.gameObject.name == "IconRanking") {
                     StateManager.ViewRecord();
                     slideBoardPos = 0;
@@ -580,20 +585,40 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
             break;
         case StateManager.State.VIEW_INFO:
             AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
-            if (infoUrl.GetComponent<GUIText>().GetScreenRect().Contains(touchInfo.touchScreenPoint))
+            if (infoAuthorUrl.GetComponent<GUIText>().GetScreenRect().Contains(touchInfo.touchScreenPoint))
             {
-                Application.OpenURL(infoUrl.GetComponent<GUIText>().text);
-                Logger.Log(this, infoUrl.GetComponent<GUIText>().text);
+                string authorUrl = propertyManager.Get("message_author_url");
+                Application.OpenURL(authorUrl);
+                Logger.Log(this, authorUrl);
+                break;
+            }
+            if (infoPrivacyUrl.GetComponent<GUIText>().GetScreenRect().Contains(touchInfo.touchScreenPoint))
+            {
+                string privacyUrl = propertyManager.Get("message_privacy_url");
+                Application.OpenURL(privacyUrl);
+                Logger.Log(this, privacyUrl);
                 break;
             }
             Destroy(infoText);
-            Destroy(infoUrl);
+            Destroy(infoAuthorUrl);
+            Destroy(infoPrivacyUrl);
             DisplayGameInit();
             StateManager.Next();
             break;
         case StateManager.State.SETTING:
             message.text = "";
             CloseGameInit();
+            if (settingBoard != null)
+            {
+                SettingBoard board = settingBoard.GetComponent<SettingBoard>();
+                if (board.privacyPolicyLabel.GetScreenRect().Contains(touchInfo.touchScreenPoint))
+                {
+                    string privacyUrl = propertyManager.Get("message_privacy_url");
+                    Application.OpenURL(privacyUrl);
+                    Logger.Log(this, privacyUrl);
+                    break;
+                }
+            }
             if (Physics.Raycast(cameraRay, out raycastHit, 10))
             {
                 AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
@@ -995,6 +1020,8 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         settingBoard = Instantiate(settingBoardPrefab, settingBoardPrefab.transform.position, Quaternion.identity) as GameObject;
         SettingBoard board = settingBoard.GetComponent<SettingBoard>();
         board.SetNameLabel(propertyManager.Get("label_input_name"));
+        board.SetNameSubLabel(propertyManager.Get("label_input_name_sub"));
+        board.SetPrivacyPolicyLabel(propertyManager.Get("message_privacy_text"));
         board.SetOkButtonLabel(propertyManager.Get("button_ok"));
     }
 
