@@ -10,6 +10,7 @@ public class SettingBoard : MonoBehaviour
     public GUIText nameLabel;
     public GUIText nameSubLabel;
     public GUIText okButtonLabel;
+    public GUIText privacyPolicyLabel;
 
     public void SetNameLabel(string labelText)
     {
@@ -24,5 +25,10 @@ public class SettingBoard : MonoBehaviour
     public void SetOkButtonLabel(string buttonText)
     {
         okButtonLabel.text = buttonText;
+    }
+
+    public void SetPrivacyPolicyLabel(string labelText)
+    {
+        privacyPolicyLabel.text = labelText;
     }
 }

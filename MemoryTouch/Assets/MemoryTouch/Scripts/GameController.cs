@@ -608,6 +608,17 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         case StateManager.State.SETTING:
             message.text = "";
             CloseGameInit();
+            if (settingBoard != null)
+            {
+                SettingBoard board = settingBoard.GetComponent<SettingBoard>();
+                if (board.privacyPolicyLabel.GetScreenRect().Contains(touchInfo.touchScreenPoint))
+                {
+                    string privacyUrl = propertyManager.Get("message_privacy_url");
+                    Application.OpenURL(privacyUrl);
+                    Logger.Log(this, privacyUrl);
+                    break;
+                }
+            }
             if (Physics.Raycast(cameraRay, out raycastHit, 10))
             {
                 AudioManager.PlayOneShot(this.GetComponent<AudioSource>(), "button04a");
@@ -1010,6 +1021,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         SettingBoard board = settingBoard.GetComponent<SettingBoard>();
         board.SetNameLabel(propertyManager.Get("label_input_name"));
         board.SetNameSubLabel(propertyManager.Get("label_input_name_sub"));
+        board.SetPrivacyPolicyLabel(propertyManager.Get("message_privacy_text"));
         board.SetOkButtonLabel(propertyManager.Get("button_ok"));
     }
 
