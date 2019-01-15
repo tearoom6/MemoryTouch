@@ -29,6 +29,7 @@ label_menu_quest=クエストモード\n(全15ステージ)
 label_menu_challenge=チャレンジモード
 label_menu_practice=練習モード
 label_input_name=名前を入力してね
+label_input_name_sub=名前は匿名で構いません。\nスコアランキングで使用されます。
 label_best_record=BEST RECORD
 label_point=Point
 label_rank=Rank

@@ -1009,6 +1009,7 @@ public class GameController : MonoBehaviour, PanelTouchListener, TouchListener
         settingBoard = Instantiate(settingBoardPrefab, settingBoardPrefab.transform.position, Quaternion.identity) as GameObject;
         SettingBoard board = settingBoard.GetComponent<SettingBoard>();
         board.SetNameLabel(propertyManager.Get("label_input_name"));
+        board.SetNameSubLabel(propertyManager.Get("label_input_name_sub"));
         board.SetOkButtonLabel(propertyManager.Get("button_ok"));
     }
 

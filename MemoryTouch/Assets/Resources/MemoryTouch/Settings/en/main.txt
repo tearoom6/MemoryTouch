@@ -29,6 +29,7 @@ label_menu_quest=Quest Mode\n(Complete in 15 stages)
 label_menu_challenge=Challenge Mode
 label_menu_practice=Practice Mode
 label_input_name=Input your name.
+label_input_name_sub=Name can be anonymous. \nIt will be used in score ranking.
 label_best_record=BEST RECORD
 label_point=Point
 label_rank=Rank
