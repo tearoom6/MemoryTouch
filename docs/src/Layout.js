@@ -1,7 +1,7 @@
 import React from 'react'
 
 import i18next from 'i18next'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import Container from 'react-bulma-components/lib/components/container'
 import Content from 'react-bulma-components/lib/components/content'
@@ -24,7 +24,7 @@ const Layout = (props) => {
             <span>Breakthrough</span>
           </Navbar.Item>
         </Navbar.Brand>
-        <Navbar.Menu active={true}>
+        <Navbar.Menu active="true">
           <Navbar.Container>
             <Navbar.Item href="./?page=privacy">{ i18next.t('privacy.title') }</Navbar.Item>
             <Navbar.Item href="./?page=license">{ i18next.t('license.title') }</Navbar.Item>
@@ -59,4 +59,4 @@ const Layout = (props) => {
   )
 }
 
-export default withNamespaces()(Layout)
+export default withTranslation()(Layout)
