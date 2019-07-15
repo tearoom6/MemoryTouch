@@ -1,7 +1,7 @@
 import React from 'react'
 
 import i18next from 'i18next'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import Container from 'react-bulma-components/lib/components/container'
 import Content from 'react-bulma-components/lib/components/content'
@@ -59,4 +59,4 @@ const Layout = (props) => {
   )
 }
 
-export default withNamespaces()(Layout)
+export default withTranslation()(Layout)

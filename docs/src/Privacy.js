@@ -1,5 +1,5 @@
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import Container from 'react-bulma-components/lib/components/container'
 import Heading from 'react-bulma-components/lib/components/heading'
@@ -101,4 +101,4 @@ const Privacy = ({ t }) => (
   </Layout>
 )
 
-export default withNamespaces()(Privacy)
+export default withTranslation()(Privacy)
