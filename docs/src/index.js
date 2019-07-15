@@ -24,6 +24,9 @@ i18next
     backend: {
       loadPath: './locales/{{lng}}.json',
     },
+    react: {
+      useSuspense: false,
+    },
   }, function(err, t) {
     // i18n initialized.
     const urlParams = new URLSearchParams(location.search)
